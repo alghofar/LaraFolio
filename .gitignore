@@ -1,8 +1,18 @@
+# Laravel
 /bootstrap/compiled.php
 /vendor
-composer.lock
-.DS_Store
+/app/config/local
 
+# Composer
+composer.lock
+
+# OS
+.DS_Store
+.idea/
+
+# Packages
+_ide_helpers.php
+
+#Vagrant
 Vagrantfile
-.vagrant
-app/config/local
+.vagrant/
