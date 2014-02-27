@@ -107,6 +107,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
+		// Custom Providers
+		'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
+
 	),
 
 	/*

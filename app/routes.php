@@ -11,7 +11,5 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'Tyloo\Controllers\HomeController@index']);
+Route::resource('user', 'Tyloo\Controllers\UserController');
