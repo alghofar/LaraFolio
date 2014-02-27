@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Paris',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,7 +108,10 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		// Custom Providers
+		'Tyloo\Providers\RepositoryServiceProvider', // Repositories
+        'Tyloo\Providers\NavigationServiceProvider', // Navigation
 		'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
+		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider', // Gravatar
 
 	),
 
@@ -175,6 +178,10 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+
+		// Custom Aliases
+		'Navigation'      => 'Tyloo\Facades\Navigation', // Navigation
+		'Gravatar'        => 'Thomaswelton\LaravelGravatar\Facades\Gravatar', // Gravatar
 
 	),
 

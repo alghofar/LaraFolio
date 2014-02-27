@@ -24,34 +24,29 @@
     </head>
 
     <body>
-        <!-- Navbar -->
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Container -->
+        <div id="wrap">
+            <!-- Navigation -->
+            @include('partials.navigation')
+            <!-- /Navigation -->
+            
+            <!-- Notifications -->
+            @include('partials.notifications')
+            <!-- /Notifications -->
+
+            <!-- Content -->
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">{{ trans('main.website.title') }}</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">{{ trans('pages.home.title') }}</a></li>
-                        <li><a href="#about">{{ trans('pages.about.title') }}</a></li>
-                        <li><a href="#contact">{{ trans('pages.contact.title') }}</a></li>
-                    </ul>
+                <div class="row">
+                    @yield('content')
                 </div>
             </div>
-        </div>
-        <!-- /Navbar -->
-
-        <!-- Container -->
-        <div class="container">
-            @yield('content')
+            <!-- /Content -->
         </div>
         <!-- /Container -->
+
+        <!-- Footer -->
+        @include('partials.footer')
+        <!-- /Footer -->
 
         <!-- JS -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>

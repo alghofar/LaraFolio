@@ -1,44 +1,64 @@
 <?php namespace Tyloo\Controllers;
 
+//use ImageUpload;
+use Illuminate\Support\Facades\Auth;
+use Tyloo\Repositories\UserRepositoryInterface;
+
 class UserController extends BaseController {
+
+	/**
+     * User Repository.
+     *
+     * @var \Tyloo\Repositories\UserRepositoryInterface
+     */
+    protected $users;
 
 	/**
      * Create a new UserController instance.
      *
+     * @param  \Tyloo\Repositories\UserRepositoryInterface $users
+     * @return void
      */
-    public function __construct()
+    public function __construct(UserRepositoryInterface $users)
     {
         parent::__construct();
+
+        $this->users = $users;
     }
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+     * Show registration form.
+     *
+     * @return \Response
+     */
+	public function getRegister()
 	{
-        return $this->view('users.index');
+        return $this->view('users.register');
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+     * Post registration form.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+	public function postRegister()
 	{
-        return View::make('users.create');
-	}
+		// We populate the form
+		$form = $this->users->getRegistrationForm();
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+		// If the entry is not valid, we redirect back with the errors
+		if ( ! $form->isValid()) {
+            return $this->redirectBack([ 'errors' => $form->getErrors() ]);
+        }
+
+        // We create the user
+        if ($user = $this->users->create($form->getInputData())) {
+            Auth::login($user);
+
+            return $this->redirectRoute('user.index', [], [ 'first_use' => true ]);
+        }
+
+        return $this->redirectRoute('home');
 	}
 
 	/**
