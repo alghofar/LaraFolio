@@ -18,7 +18,7 @@ return [
 		[
 			'label' => 'Home',
 			'route' => 'home',
-			'active' => ['/')
+			'active' => ['/'],
 		],
 
 	],

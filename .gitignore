@@ -3,9 +3,6 @@
 /vendor
 /app/config/local
 
-# Composer
-composer.lock
-
 # OS
 .DS_Store
 .idea/
