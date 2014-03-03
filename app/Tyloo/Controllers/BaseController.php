@@ -1,6 +1,7 @@
 <?php namespace Tyloo\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
 

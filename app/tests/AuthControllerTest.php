@@ -2,6 +2,7 @@
 
 class AuthControllerTest extends TestCase {
 
+	// GET Login
 	public function test_get_login_form_guest()
 	{
 		$this->beGuest();
@@ -18,11 +19,19 @@ class AuthControllerTest extends TestCase {
 		$this->assertRedirectedToRoute('users.getProfile');
 	}
 
+	// POST Login
+	public function test_post_login_form_bad_csrf_token()
+	{
+		$this->setExpectedException('Illuminate\Session\TokenMismatchException');
+		$this->beGuest();
+		$this->call('post', URL::route('auth.postLogin'));
+	}
+
 	public function test_post_login_form_blank()
 	{
 		$this->beGuest();
 
-		$this->call('POST', URL::route('auth.postLogin'));
+		$this->call('POST', URL::route('auth.postLogin'), ['IgnoreCSRFTokenError' => true]);
 		$this->assertRedirectedToRoute('auth.getLogin');
 		$this->assertSessionHas('error');
 	}
@@ -55,6 +64,7 @@ class AuthControllerTest extends TestCase {
 		$this->assertSessionHas('success');
 	}
 
+	// GET Logout
 	public function test_get_logout_not_logged_in() {
 		$this->beGuest();
 

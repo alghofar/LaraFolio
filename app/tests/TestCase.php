@@ -2,19 +2,26 @@
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
+	/**
+	 * @var bool
+	 */
+	protected $useDatabase = true;
+
+	/**
+	 * @var array
+	 */
 	protected $user = [
 		'username' => 'Admin',
 		'password' => '123456',
 	];
+
+	/**
+	 * @var array
+	 */
 	protected $admin = [
 		'username' => 'User',
 		'password' => '123456',
 	];
-
-	public function tearDown()
-	{
-		Mockery::close();
-	}
 
 	/**
 	 * Creates the application.
@@ -28,6 +35,52 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 		$testEnvironment = 'testing';
 
 		return require __DIR__.'/../../bootstrap/start.php';
+	}
+
+	/**
+	 * Set up function for all tests
+	 */
+	public function setUp()
+	{
+		parent::setUp();
+
+		if ($this->useDatabase) {
+			$this->setUpDb();
+		}
+		// To test auth, we must re-enable filters on the routes
+		// By default, filters are disabled in testing
+		Route::enableFilters();
+	}
+
+	/**
+	 * Tear down function for all tests
+	 */
+	public function tearDown()
+	{
+		parent::tearDown();
+		if ($this->useDatabase) {
+			$this->teardownDb();
+		}
+		Mockery::close();
+		Auth::logout();
+		Session::flush();
+	}
+
+	/**
+	 * Set up the database for tests
+	 */
+	public function setUpDb()
+	{
+		Artisan::call('migrate');
+		Artisan::call('db:seed');
+	}
+
+	/**
+	 * Tear down the database for tests
+	 */
+	public function teardownDb()
+	{
+		Artisan::call('migrate:reset');
 	}
 
 	/**
