@@ -24,25 +24,22 @@
     </head>
 
     <body>
-        <!-- Container -->
-        <div id="wrap">
-            <!-- Navigation -->
-            @include('partials.navigation')
-            <!-- /Navigation -->
+        <!-- Navigation -->
+        @include('partials.navigation')
+        <!-- /Navigation -->
             
-            <!-- Notifications -->
-            @include('partials.notifications')
-            <!-- /Notifications -->
+        
 
-            <!-- Content -->
-            <div class="container">
-                <div class="row">
-                    @yield('content')
-                </div>
+        <!-- Content -->
+        <div class="container">
+            <div class="row">
+                <!-- Notifications -->
+                @include('partials.notifications')
+                <!-- /Notifications -->
+                @yield('content')
             </div>
-            <!-- /Content -->
         </div>
-        <!-- /Container -->
+        <!-- /Content -->
 
         <!-- Footer -->
         @include('partials.footer')

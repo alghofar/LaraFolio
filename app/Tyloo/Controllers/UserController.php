@@ -48,14 +48,14 @@ class UserController extends BaseController {
 
 		// If the entry is not valid, we redirect back with the errors
 		if ( ! $form->isValid()) {
-            return $this->redirectBack([ 'errors' => $form->getErrors() ]);
+            return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
         // We create the user
         if ($user = $this->users->create($form->getInputData())) {
             Auth::login($user);
 
-            return $this->redirectRoute('user.index', [], [ 'first_use' => true ]);
+            return $this->redirectRoute('user.index', [], ['success' => '<h4>Welcome to LaraFolio!</h4><p>Get into the awesomeness!</p>']);
         }
 
         return $this->redirectRoute('home');

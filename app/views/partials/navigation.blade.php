@@ -15,31 +15,20 @@
 
 		<div class="collapse navbar-collapse header-collapse">
 			<ul class="nav navbar-nav">
-
 				{{ Navigation::make(Request::path()) }}
-
-				@if(Auth::guest())
-					<li ><a href="{{ route('users.getRegister') }}">Register</a></li>
-					<li><a href="{{ route('sessions.getLogin') }}">Login</a></li>
-				@else
-					<li><a href="{{ route('users.getProfile') }}">My profile</a></li>
-					<li><a href="{{ route('sessions.getLogout') }}">Logout</a></li>
-				@endif
-
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				@if(Auth::guest())
-					<li><a href="{{ url('register') }}" class="btn btn-primary">Register</a></li>
-					<li><a href="{{ url('login') }}" class="btn btn-primary">Login</a></li>
+					<li><a href="{{ route('users.getRegister') }}">Register</a></li>
+					<li><a href="{{ route('auth.getLogin') }}">Login</a></li>
 				@else
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome back, {{ Auth::user()->username }} <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li class="{{( Request::segment('1') == 'user' && Request::segment('2') == '' ? 'active' : false )}}"><a href="{{ url('user')}}">My tricks</a></li>
-						<li class="{{( Request::segment('2') == 'favorites' ? 'active' : false )}}"><a href="{{ url('user/favorites')}}">My Favorites</a></li>
+						<li><a href="{{ url('profile')}}">My profile</a></li>
 						<li class="{{( Request::segment('2') == 'settings' ? 'active' : false )}}"><a href="{{ url('user/settings')}}">Settings</a></li>
-						<li><a href="{{ url('logout')}}">Logout</a></li>
+						<li><a href="{{ route('auth.getLogout')}}">Logout</a></li>
 					</ul>
 				</li>
 				@endif

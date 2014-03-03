@@ -20,9 +20,9 @@ Route::group([ 'namespace' => 'Tyloo\Controllers' ], function () {
 
 	Route::get('profile', ['as' => 'users.getProfile', 'uses' => 'UserController@getProfile']);
 
-	// Session routes
-	Route::get('login', ['as' => 'sessions.getLogin', 'uses' => 'SessionController@getLogin']);
-	Route::post('login', ['as' => 'sessions.postLogin', 'uses' => 'SessionController@postLogin']);
+	// Auth routes
+	Route::get('login', ['as' => 'auth.getLogin', 'uses' => 'AuthController@getLogin']);
+	Route::post('login', ['as' => 'auth.postLogin', 'uses' => 'AuthController@postLogin']);
 
-	Route::get('logout', ['as' => 'sessions.getLogout', 'uses' => 'SessionController@getLogout']);
+	Route::get('logout', ['as' => 'auth.getLogout', 'uses' => 'AuthController@getLogout']);
 });

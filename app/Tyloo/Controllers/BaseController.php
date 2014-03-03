@@ -77,8 +77,8 @@ class BaseController extends Controller
      * @param  mixed $default
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function redirectIntended($default = null)
+    protected function redirectIntended($default = null, $data = [])
     {
-        return Redirect::intended($default);
+        return Redirect::intended($default)->with($data);
     }
 }
