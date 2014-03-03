@@ -1,12 +1,17 @@
 <?php
 
 return [
+	'reset'		=> 'Reset',
+	'submit'	=> 'Submit',
 
-	'users' => [
+	'users'		=> [
 		'register' => [
-			'reset' => 'Reset',
 			'submit' => 'Sign me up!',
-		]
-	]
+		],
+
+		'update' => [
+			'submit' => 'Update my Infos!',
+		],
+	],
 
 ];

@@ -16,7 +16,7 @@ class AuthController extends BaseController {
     /**
      * Create a new AuthController instance.
      *
-     * @param  \Rtloo\Repositories\UserRepositoryInterface $users
+     * @param  \Tyloo\Repositories\UserRepositoryInterface $users
      * @return void
      */
     public function __construct(UserRepositoryInterface $users)
@@ -24,6 +24,42 @@ class AuthController extends BaseController {
         parent::__construct();
 
         $this->users = $users;
+    }
+
+
+    /**
+     * Show registration form.
+     *
+     * @return \Response
+     */
+    public function getRegister()
+    {
+        return $this->view('auth.register');
+    }
+
+    /**
+     * Post registration form.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postRegister()
+    {
+        // We populate the form
+        $form = $this->users->getRegistrationForm();
+
+        // If the entry is not valid, we redirect back with the errors
+        if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        // We create the user
+        if ($user = $this->users->create($form->getInputData())) {
+            Auth::login($user);
+
+            return $this->redirectRoute('user.index', [], ['success' => '<h4>Welcome to LaraFolio!</h4><p>Get into the awesomeness!</p>']);
+        }
+
+        return $this->redirectRoute('home');
     }
 
 	/**
@@ -57,7 +93,7 @@ class AuthController extends BaseController {
             return $this->redirectIntended(route('home'), ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
         }
 
-        return $this->redirectBack(['error' => '<h5>E-mail or password was incorrect, please try again</h5>']);
+        return $this->redirectRoute('auth.getLogin', [], ['error' => '<h5>E-mail or password was incorrect, please try again</h5>']);
 	}
 
 	/**
@@ -67,6 +103,10 @@ class AuthController extends BaseController {
      */
     public function getLogout()
     {
+        if(Auth::guest()) {
+            return $this->redirectRoute('auth.getLogin');
+        }
+
         Auth::logout();
 
         return $this->redirectRoute('auth.getLogin', [], ['info' => '<p>You were successfully logged out! See you soon!</p>']);

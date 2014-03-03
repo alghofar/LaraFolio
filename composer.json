@@ -8,7 +8,8 @@
 		"thomaswelton/laravel-gravatar": "0.0.*"
 	},
 	"require-dev": {
-		"way/generators": "dev-master"
+		"way/generators": "dev-master",
+		"mockery/mockery": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

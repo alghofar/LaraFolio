@@ -35,15 +35,16 @@ App::after(function($request, $response)
 
 Route::filter('admin', function () {
 	if (Auth::guest() || (Auth::check() && ! Auth::user()->isAdmin())) {
-		return Redirect::guest('login');
+		return Redirect::route('auth.getLogin');
 	}
 });
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) {
+		return Redirect::route('auth.getLogin');
+	}
 });
-
 
 Route::filter('auth.basic', function()
 {
@@ -63,7 +64,9 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::home();
+	if (Auth::check()) {
+		return Redirect::route('users.getProfile');
+	}
 });
 
 /*

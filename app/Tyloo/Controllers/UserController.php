@@ -13,6 +13,13 @@ class UserController extends BaseController {
      */
     protected $users;
 
+    /**
+     * The currently authenticated user.
+     *
+     * @var \User
+     */
+    protected $user;
+
 	/**
      * Create a new UserController instance.
      *
@@ -23,64 +30,32 @@ class UserController extends BaseController {
     {
         parent::__construct();
 
+        $this->beforeFilter('auth', [ 'except' => 'getPublic' ]);
+
+		$this->user  = Auth::user();
         $this->users = $users;
     }
 
 	/**
-     * Show registration form.
-     *
-     * @return \Response
-     */
-	public function getRegister()
+	 * Display the specified resource.
+	 *
+	 * @return Response
+	 */
+	public function getProfile()
 	{
-        return $this->view('users.register');
-	}
-
-	/**
-     * Post registration form.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-	public function postRegister()
-	{
-		// We populate the form
-		$form = $this->users->getRegistrationForm();
-
-		// If the entry is not valid, we redirect back with the errors
-		if ( ! $form->isValid()) {
-            return $this->redirectBack(['errors' => $form->getErrors()]);
-        }
-
-        // We create the user
-        if ($user = $this->users->create($form->getInputData())) {
-            Auth::login($user);
-
-            return $this->redirectRoute('user.index', [], ['success' => '<h4>Welcome to LaraFolio!</h4><p>Get into the awesomeness!</p>']);
-        }
-
-        return $this->redirectRoute('home');
+		$user = Auth::user();
+        return $this->view('users.profile', compact('user'));
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Tyloo\User  $user
 	 * @return Response
 	 */
-	public function show($id)
+	public function getPublicProfile($user)
 	{
         return View::make('users.show');
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-        return View::make('users.edit');
 	}
 
 	/**
@@ -89,20 +64,21 @@ class UserController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function postProfile()
 	{
-		//
-	}
+		// We populate the form
+		$form = $this->users->getUpdateProfileForm();
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		// If the entry is not valid, we redirect back with the errors
+		if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        // We update the user
+        $this->users->updateProfile($this->user, Input::all());
+
+        // We redirect to the profile page
+        return $this->redirectRoute('user.settings', [], [ 'settings_updated' => true ]);
 	}
 
 }

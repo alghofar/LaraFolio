@@ -35,9 +35,9 @@
             <div class="row">
                 <!-- Notifications -->
                 @include('partials.notifications')
-                <!-- /Notifications -->
-                @yield('content')
             </div>
+            <!-- /Notifications -->
+            @yield('content')
         </div>
         <!-- /Content -->
 
