@@ -1,16 +1,26 @@
 <?php
 
-// Defining menu structure here
-// the items that need to appear when user is logged in should have logged_in set as true
-return array(
+return [
 
-	'menu' => array(
-		array(
+	/*
+	|--------------------------------------------------------------------------
+	| Navigation
+	|--------------------------------------------------------------------------
+	|
+	| Defining menu structure here.
+	| The items that need to appear when user is logged in should have
+	| logged_in set as true.
+	|
+	*/
+
+	'menu' => [
+
+		[
 			'label' => 'Home',
 			'route' => 'home',
-			'active' => array('/')
-		),
-	),
+			'active' => ['/')
+		],
 
+	],
 
-);
+];

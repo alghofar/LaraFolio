@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'providers' => array(
+	'providers' => [
 
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
@@ -109,11 +109,11 @@ return array(
 
 		// Custom Providers
 		'Tyloo\Providers\RepositoryServiceProvider', // Repositories
-        'Tyloo\Providers\NavigationServiceProvider', // Navigation
+		'Tyloo\Providers\NavigationServiceProvider', // Navigation
 		'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
 		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider', // Gravatar
 
-	),
+	],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -126,7 +126,7 @@ return array(
 	|
 	*/
 
-	'manifest' => storage_path().'/meta',
+	'manifest' => storage_path() . '/meta',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -139,7 +139,7 @@ return array(
 	|
 	*/
 
-	'aliases' => array(
+	'aliases' => [
 
 		'App'             => 'Illuminate\Support\Facades\App',
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
@@ -183,6 +183,6 @@ return array(
 		'Navigation'      => 'Tyloo\Facades\Navigation', // Navigation
 		'Gravatar'        => 'Thomaswelton\LaravelGravatar\Facades\Gravatar', // Gravatar
 
-	),
+	],
 
-);
+];

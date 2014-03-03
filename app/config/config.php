@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
 	'view_throttle_time' => 3600,
 
@@ -11,15 +11,17 @@ return array(
 	'admin_email' => 'jbonva@gmail.com',
 
 	// available user permission types that are matched by user_type column in the users table
-	'user_types' => array(
+	'user_types' => [
+
 		'admin' 	=> 100,
 		'reviewer'  => 20,
 		'user'		=> 10
-	),
 
-	// Some potential usernames should be protected and new or existing users will not
-	// be able to take any of the following usernames :
+	],
+
+	// Some potential usernames should be protected and new or existing users will not be able to take any of the following usernames:
 	'forbidden_usernames' => [
+
 		'user',
 		'admin',
 		'privacy',
@@ -35,5 +37,7 @@ return array(
 		'feed',
 		'feed.atom',
 		'feed.xml'
+
 	],
-);
+
+];
