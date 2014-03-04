@@ -4,7 +4,7 @@ php:
   - 5.4
 
 before_script:
-  - mysql -e 'CREATE DATABASE larafolio-testing;'
+  - mysql -e 'CREATE DATABASE ˋlarafolio-testingˋ DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;'
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev
 
