@@ -11,16 +11,18 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	 * @var array
 	 */
 	protected $user = [
-		'username' => 'Admin',
-		'password' => '123456',
+		'username'		=> 'User',
+		'password'		=> '123456',
+		'bad_password'	=> '12345',
 	];
 
 	/**
 	 * @var array
 	 */
 	protected $admin = [
-		'username' => 'User',
-		'password' => '123456',
+		'username'		=> 'Admin',
+		'password'		=> '123456',
+		'bad_password'	=> '12345',
 	];
 
 	/**
@@ -80,7 +82,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	 */
 	public function teardownDb()
 	{
-		Artisan::call('migrate:reset');
+		//Artisan::call('migrate:reset');
 	}
 
 	/**

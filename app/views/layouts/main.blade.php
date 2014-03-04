@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title') | trans('main.website.title')</title>
+        <title>@yield('title', trans('main.website.title'))</title>
         <meta name="description" content="@yield('description', trans('main.website.description'))">
         <meta name="author" content="{{ trans('main.website.author') }}">
         

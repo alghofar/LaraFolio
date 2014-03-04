@@ -29,6 +29,13 @@ class User extends Model implements UserInterface, RemindableInterface
 	protected $hidden = ['password'];
 
 	/**
+	 * The attributes that should be filled in.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['email', 'username', 'password', 'avatar'];
+
+	/**
 	 * Query the user's social profile.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne

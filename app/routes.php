@@ -25,16 +25,18 @@ Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 		// Logout
 		Route::get('logout', ['as' => 'auth.getLogout', 'uses' => 'AuthController@getLogout']);
 
+		// My Settings
+		Route::get('settings', ['as' => 'users.getSettings', 'uses' => 'UserController@getSettings']);
+		Route::post('settings', ['as' => 'users.postSettings', 'uses' => 'UserController@postSettings']);
+
 		// My Profile
 		Route::get('profile', ['as' => 'users.getProfile', 'uses' => 'UserController@getProfile']);
-		Route::put('profile', ['as' => 'users.postProfile', 'uses' => 'UserController@postProfile']);
-
 	});
 
 	// Home
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 	// Public Profile
-	//Route::get('{user}', ['as' => 'users.getPublicProfile', 'uses' => 'UserController@getPublicProfile']);
+	Route::get('{user}', ['as' => 'users.getPublicProfile', 'uses' => 'UserController@getPublicProfile']);
 
 });

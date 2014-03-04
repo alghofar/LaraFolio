@@ -67,6 +67,17 @@ class BaseController extends Controller
 	 * @param  array $data
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
+	protected function redirectRouteInput($route, $params = [], $data = [])
+	{
+		return Redirect::route($route, $params)->withInput()->with($data);
+	}
+
+	/**
+	 * Redirect back with old input and the specified data.
+	 *
+	 * @param  array $data
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	protected function redirectBack($data = [])
 	{
 		return Redirect::back()->withInput()->with($data);

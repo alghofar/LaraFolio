@@ -2,11 +2,13 @@
 
 class HomeControllerTest extends TestCase {
 
-	/**
-	 * Home Page Test
-	 *
-	 * @return void
-	 */
+	/*
+	|--------------------------------------------------------------------------
+	| Home Page Tests
+	|--------------------------------------------------------------------------
+	*/
+
+	// GET /
 	public function testHomeControllerIndexPage()
 	{
 		$this->call('GET', '/');

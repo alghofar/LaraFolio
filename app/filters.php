@@ -82,7 +82,6 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-
 	if (Session::token() !== Input::get('_token') || Session::token() === null || Input::get('_token') === null)
 	{
 		// Session token and form tokens do not match or one is empty

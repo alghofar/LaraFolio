@@ -1,3 +1,5 @@
+@section('title','Login' . trans('main.website.separator') . trans('main.website.title'))
+
 @section('content')
 	<div class="row">
 		{{ Form::open(['route' => 'auth.postLogin', 'method' => 'POST', 'class' => 'form-signin', 'role' => 'form']) }}
