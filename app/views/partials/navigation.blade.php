@@ -23,10 +23,11 @@
 					<li><a href="{{ route('auth.getRegister') }}">Register</a></li>
 					<li><a href="{{ route('auth.getLogin') }}">Login</a></li>
 				@else
-				<li class="dropdown">
+				<li class="dropdown{{ Request::is('settings') || Request::is('profile') ? ' active' : '' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome back, {{ Auth::user()->username }} <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="{{ url('settings')}}">My Settings</a></li>
+						<li{{ Request::is('profile') ? ' class="active"' : '' }}><a href="{{ url('settings')}}">My Profile</a></li>
+						<li{{ Request::is('settings') ? ' class="active"' : '' }}><a href="{{ url('settings')}}">My Settings</a></li>
 						<li><a href="{{ route('auth.getLogout')}}">Logout</a></li>
 					</ul>
 				</li>
