@@ -2,20 +2,15 @@
 
 return [
 
-	'default' => 'mysql',
+	'default' => 'sqlite',
 
 	'connections' => [
 
-		'mysql' => [
+		'sqlite' => [
 
-			'driver'    => 'mysql',
-			'host'      => '127.0.0.1',
-			'database'  => 'larafolio-testing',
-			'username'  => 'root',
-			'password'  => 'root',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'driver'   => 'sqlite',
+			'database' => ':memory:',
+			'prefix'   => '',
 
 		],
 
