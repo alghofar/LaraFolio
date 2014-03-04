@@ -1,4 +1,4 @@
-@section('title', 'Settings')
+@section('title', 'My Settings' . trans('main.website.separator') . trans('main.website.title'))
 
 @section('content')
 	<div class="row">
@@ -12,7 +12,7 @@
 						{{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('users.create.form.username.placeholder')]) }}
 					</div>
 				</div>
-				<div class="form-group{{ ($errors->has('email')) ? ' has-error' : '' }}">
+				<div class="form-group">
 					{{ Form::label('email', trans('users.create.form.email.label'), ['class' => 'col-sm-3 control-label']) }}
 					<div class="col-sm-9">
 						{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => trans('users.create.form.email.placeholder'), 'disabled' => 'disabled']) }}

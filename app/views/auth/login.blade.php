@@ -1,4 +1,4 @@
-@section('title','Login' . trans('main.website.separator') . trans('main.website.title'))
+@section('title', 'Login' . trans('main.website.separator') . trans('main.website.title'))
 
 @section('content')
 	<div class="row">

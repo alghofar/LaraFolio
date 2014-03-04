@@ -14,6 +14,18 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 		'username'		=> 'User',
 		'password'		=> '123456',
 		'bad_password'	=> '12345',
+		'first_name'	=> 'Julien',
+		'last_name'		=> 'Bonvarlet',
+		'location'		=> 'Paris (France)',
+		'description'	=> '<p>Hi, I am a French PHP developer and I love Laravel!</p>',
+	];
+
+	/**
+	 * @var array
+	 */
+	protected $user_credentials = [
+		'username'		=> 'User',
+		'password'		=> '123456',
 	];
 
 	/**
@@ -99,7 +111,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	 */
 	public function beUser() 
 	{
-		Auth::attempt($this->user);
+		Auth::attempt($this->user_credentials);
 	}
 
 	/**

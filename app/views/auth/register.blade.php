@@ -1,3 +1,5 @@
+@section('title', 'Register' . trans('main.website.separator') . trans('main.website.title'))
+
 @section('content')
 	<div class="row">
 		<div class="col-lg-8 col-lg-push-2">

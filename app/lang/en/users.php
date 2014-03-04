@@ -12,6 +12,22 @@ return [
 				'label'			=> 'Email',
 				'placeholder'	=> 'Please enter your Email adress',
 			],
+			'first_name' => [
+				'label'			=> 'First Name',
+				'placeholder'	=> 'Please enter your First Name',
+			],
+			'last_name' => [
+				'label'			=> 'Last Name',
+				'placeholder'	=> 'Please enter your Last Name',
+			],
+			'location' => [
+				'label'			=> 'Location',
+				'placeholder'	=> 'Please enter your Location',
+			],
+			'description' => [
+				'label'			=> 'Description',
+				'placeholder'	=> 'Please enter a short description',
+			],
 			'password' => [
 				'label'			=> 'Password',
 				'placeholder'	=> 'Please enter your Password',

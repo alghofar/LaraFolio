@@ -60,6 +60,23 @@ class AuthControllerTest extends TestCase {
 		$this->assertSessionHas('errors');
 	}
 
+	public function test_post_register_form_too_small_username()
+	{
+		$this->beGuest();
+
+		Input::replace($input = [
+			'IgnoreCSRFTokenError' => true,
+			'username'				=> 'A',
+			'email'					=> 'test@test.com',
+			'password'				=> '123456',
+			'password_confirmation'	=> '123456',
+		]);
+
+		$this->call('POST', URL::route('auth.postRegister'), $input);
+		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertSessionHas('errors');
+	}
+
 	public function test_post_register_form_blank_email()
 	{
 		$this->beGuest();

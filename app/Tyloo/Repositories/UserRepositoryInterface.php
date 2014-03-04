@@ -55,4 +55,12 @@ interface UserRepositoryInterface
      */
     public function updateSettings(User $user, array $data);
 
+    /**
+     * Update the user's profile.
+     *
+     * @param  array $data
+     * @return \Tyloo\User
+     */
+    public function updateProfile(User $user, array $data);
+
 }

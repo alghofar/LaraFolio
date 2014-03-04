@@ -1,8 +1,5 @@
 <?php
 
-// Model Binding
-Route::model('user', 'Tyloo\User');
-
 // Namespacing the Controllers
 Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 
@@ -31,12 +28,13 @@ Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 
 		// My Profile
 		Route::get('profile', ['as' => 'users.getProfile', 'uses' => 'UserController@getProfile']);
+		Route::post('profile', ['as' => 'users.postProfile', 'uses' => 'UserController@postProfile']);
 	});
 
 	// Home
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 	// Public Profile
-	Route::get('{user}', ['as' => 'users.getPublicProfile', 'uses' => 'UserController@getPublicProfile']);
+	Route::get('{username}/profile', ['as' => 'users.getProfilePublic', 'uses' => 'UserController@getProfilePublic']);
 
 });

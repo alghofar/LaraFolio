@@ -7,12 +7,6 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Model implements UserInterface, RemindableInterface
 {
-	/**
-	 * The class to used to present the model.
-	 *
-	 * @var string
-	 */
-	public $presenter = 'Tyloo\Presenters\UserPresenter';
 
     /**
      * The table associated with the model.
@@ -33,17 +27,7 @@ class User extends Model implements UserInterface, RemindableInterface
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['email', 'username', 'password', 'avatar'];
-
-	/**
-	 * Query the user's social profile.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
-	 */
-	public function profile()
-	{
-		return $this->hasOne('Tyloo\Profile');
-	}
+	protected $fillable = ['email', 'username', 'password', 'first_name', 'last_name', 'location', 'description', 'avatar'];
 
 	/**
 	 * Get the unique identifier for the user.

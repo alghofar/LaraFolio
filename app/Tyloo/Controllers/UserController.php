@@ -36,7 +36,7 @@ class UserController extends BaseController {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the User Settings resource.
 	 *
 	 * @return Response
 	 */
@@ -47,14 +47,13 @@ class UserController extends BaseController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the User Settings resource in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function postSettings()
 	{
-		//dd(Input::get('_method'));
 		// We populate the form
 		$form = $this->users->getSettingsForm();
 
@@ -67,28 +66,53 @@ class UserController extends BaseController {
 		$this->users->updateSettings($this->user, Input::all());
 
 		// We redirect to the profile page
-		return $this->redirectRoute('users.getSettings', [], ['success' => '<p>Your settings have been updated!</p>']);
+		return $this->redirectRoute('users.getSettings', [], ['success' => '<p>Your Settings have been updated!</p>']);
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the User Profile resource.
 	 *
 	 * @return Response
 	 */
 	public function getProfile()
 	{
-		return $this->view('users.profile');
+		$user = Auth::user();
+		return $this->view('users.profile', compact('user'));
+	}
+
+	/**
+	 * Update the User Profile resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function postProfile()
+	{
+		// We populate the form
+		$form = $this->users->getProfileForm();
+
+		// If the entry is not valid, we redirect back with the errors
+		if ( ! $form->isValid()) {
+			return $this->redirectRouteInput('users.getProfile', [], ['errors' => $form->getErrors()]);
+		}
+
+		// We update the user
+		$this->users->updateProfile($this->user, Input::all());
+
+		// We redirect to the profile page
+		return $this->redirectRoute('users.getProfile', [], ['success' => '<p>Your Profile have been updated!</p>']);
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  Tyloo\User  $user
+	 * @param  string  $username
 	 * @return Response
 	 */
-	public function getPublicProfile($user)
+	public function getProfilePublic($username)
 	{
-		return $this->view('users.publicProfile');
+		$user = $this->users->findByUsername($username);
+		return $user;
+		return $this->view('users.profilePublic', compact('user'));
 	}
 
 }
