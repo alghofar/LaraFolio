@@ -48,46 +48,46 @@ return [
 
 		'sqlite' => [
 
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
+			'driver'	=> 'sqlite',
+			'database'	=> __DIR__.'/../database/production.sqlite',
+			'prefix'	=> '',
 
 		],
 
 		'mysql' => [
 
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'larafolio',
-			'username'  => 'root',
-			'password'  => 'root',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'driver'	=> 'mysql',
+			'host'		=> 'localhost',
+			'database'	=> 'larafolio',
+			'username'	=> 'root',
+			'password'	=> 'root',
+			'charset'	=> 'utf8',
+			'collation'	=> 'utf8_unicode_ci',
+			'prefix'	=> '',
 
 		],
 
 		'pgsql' => [
 
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
+			'driver'	=> 'pgsql',
+			'host'		=> 'localhost',
+			'database'	=> 'database',
+			'username'	=> 'root',
+			'password'	=> '',
+			'charset'	=> 'utf8',
+			'prefix'	=> '',
+			'schema'	=> 'public',
 
 		],
 
 		'sqlsrv' => [
 
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
+			'driver'	=> 'sqlsrv',
+			'host'		=> 'localhost',
+			'database'	=> 'database',
+			'username'	=> 'root',
+			'password'	=> '',
+			'prefix'	=> '',
 
 		],
 
@@ -119,12 +119,12 @@ return [
 
 	'redis' => [
 
-		'cluster' => false,
-		'default' => [
+		'cluster'	=> false,
+		'default'	=> [
 
-			'host'     => '127.0.0.1',
-			'port'     => 6379,
-			'database' => 0,
+			'host'		=> '127.0.0.1',
+			'port'		=> 6379,
+			'database'	=> 0,
 
 		],
 

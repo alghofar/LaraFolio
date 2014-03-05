@@ -83,9 +83,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	{
 		$user = $this->getNew();
 
-		$user->email    = e($data['email']);
-		$user->username = e($data['username']);
-		$user->password = Hash::make($data['password']);
+		$user->email	= e($data['email']);
+		$user->username	= e($data['username']);
+		$user->password	= Hash::make($data['password']);
 
 		$user->save();
 

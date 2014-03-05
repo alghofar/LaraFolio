@@ -28,45 +28,45 @@ return [
 	|
 	*/
 
-	'connections' => [
+	'connections'	=> [
 
 		'sync' => [
 
-			'driver' => 'sync',
+			'driver'	=> 'sync',
 
 		],
 
 		'beanstalkd' => [
 
-			'driver' => 'beanstalkd',
-			'host'   => 'localhost',
-			'queue'  => 'default',
+			'driver'	=> 'beanstalkd',
+			'host'		=> 'localhost',
+			'queue'		=> 'default',
 
 		],
 
 		'sqs' => [
 
-			'driver' => 'sqs',
-			'key'    => 'your-public-key',
-			'secret' => 'your-secret-key',
-			'queue'  => 'your-queue-url',
-			'region' => 'us-east-1',
+			'driver'	=> 'sqs',
+			'key'		=> 'your-public-key',
+			'secret'	=> 'your-secret-key',
+			'queue'		=> 'your-queue-url',
+			'region'	=> 'us-east-1',
 
 		],
 
 		'iron' => [
 
-			'driver'  => 'iron',
-			'project' => 'your-project-id',
-			'token'   => 'your-token',
-			'queue'   => 'your-queue-name',
+			'driver'	=> 'iron',
+			'project'	=> 'your-project-id',
+			'token'		=> 'your-token',
+			'queue'		=> 'your-queue-name',
 
 		],
 
 		'redis' => [
 
-			'driver' => 'redis',
-			'queue'  => 'default',
+			'driver'	=> 'redis',
+			'queue'		=> 'default',
 
 		],
 
@@ -85,7 +85,8 @@ return [
 
 	'failed' => [
 
-		'database' => 'mysql', 'table' => 'failed_jobs',
+		'database'	=> 'mysql',
+		'table'		=> 'failed_jobs',
 
 	],
 

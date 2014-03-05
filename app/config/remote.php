@@ -30,12 +30,12 @@ return [
 
 		'production' => [
 
-			'host'      => '',
-			'username'  => '',
-			'password'  => '',
-			'key'       => '',
-			'keyphrase' => '',
-			'root'      => '/var/www',
+			'host'		=> '',
+			'username'	=> '',
+			'password'	=> '',
+			'key'		=> '',
+			'keyphrase'	=> '',
+			'root'		=> '/var/www',
 
 		],
 

@@ -8,11 +8,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Model implements UserInterface, RemindableInterface
 {
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
+	/**
+	 * The table associated with the model.
+	 *
+	 * @var string
+	 */
 	protected $table = 'users';
 
 	/**
@@ -82,4 +82,5 @@ class User extends Model implements UserInterface, RemindableInterface
 	{
 		return ($this->is_admin == true);
 	}
+
 }

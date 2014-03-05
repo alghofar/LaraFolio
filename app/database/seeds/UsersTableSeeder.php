@@ -8,20 +8,20 @@ class UsersTableSeeder extends Seeder {
 
 		$users = [
 			[
-				'username'      => 'Admin',
-				'email'         => 'admin@larafolio.dev',
-				'password'      => Hash::make('123456'),
-				'is_admin'      => '1',
-				'created_at'    => \Carbon\Carbon::now(),
-				'updated_at'    => \Carbon\Carbon::now(),
+				'username'		=> 'Admin',
+				'email'			=> 'admin@larafolio.dev',
+				'password'		=> Hash::make('123456'),
+				'is_admin'		=> '1',
+				'created_at'	=> \Carbon\Carbon::now(),
+				'updated_at'	=> \Carbon\Carbon::now(),
 			],
 			[
-				'username'      => 'User',
-				'email'         => 'user@larafolio.dev',
-				'password'      => Hash::make('123456'),
-				'is_admin'      => '0',
-				'created_at'    => \Carbon\Carbon::now(),
-				'updated_at'    => \Carbon\Carbon::now(),
+				'username'		=> 'User',
+				'email'			=> 'user@larafolio.dev',
+				'password'		=> Hash::make('123456'),
+				'is_admin'		=> '0',
+				'created_at'	=> \Carbon\Carbon::now(),
+				'updated_at'	=> \Carbon\Carbon::now(),
 			]
 		];
 
