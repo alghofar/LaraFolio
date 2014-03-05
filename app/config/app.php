@@ -111,6 +111,7 @@ return [
 		'Tyloo\Providers\RepositoryServiceProvider', // Repositories
 		'Tyloo\Providers\NavigationServiceProvider', // Navigation
 		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider', // Gravatar
+		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider', // Presenter
 
 		// Uncomment those lines below for use in development
 		//'Way\Generators\GeneratorsServiceProvider', // Laravel Generators

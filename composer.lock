@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "cb822d9a74b7d8a4b85b89e8db5b2c07",
+    "hash": "9cd875e6b4852e87049e4d49746c2e78",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -340,6 +340,55 @@
                 "laravel"
             ],
             "time": "2014-02-28 22:07:47"
+        },
+        {
+            "name": "mccool/laravel-auto-presenter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ShawnMcCool/laravel-auto-presenter.git",
+                "reference": "76d0298584e85a421f350b13b16d48f8ae74a19e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ShawnMcCool/laravel-auto-presenter/zipball/76d0298584e85a421f350b13b16d48f8ae74a19e",
+                "reference": "76d0298584e85a421f350b13b16d48f8ae74a19e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "4.x",
+                "illuminate/pagination": "4.x",
+                "illuminate/support": "4.x",
+                "illuminate/view": "4.x",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "McCool\\LaravelAutoPresenter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com"
+                }
+            ],
+            "description": "A system for auto-decorating models with presenter objects.",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "lpm",
+                "presenter"
+            ],
+            "time": "2013-12-18 15:01:51"
         },
         {
             "name": "monolog/monolog",
@@ -2601,6 +2650,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "mccool/laravel-auto-presenter": 20,
         "way/generators": 20,
         "mockery/mockery": 20
     },

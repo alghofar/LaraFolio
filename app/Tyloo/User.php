@@ -1,12 +1,18 @@
 <?php namespace Tyloo;
 
-use Gravatar;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Model implements UserInterface, RemindableInterface
 {
+
+	/**
+	 * The class to used to present the model.
+	 *
+	 * @var string
+	 */
+	public $presenter = 'Tyloo\Presenters\UserPresenter';
 
 	/**
 	 * The table associated with the model.
@@ -47,20 +53,6 @@ class User extends Model implements UserInterface, RemindableInterface
 	public function getAuthPassword()
 	{
 		return $this->password;
-	}
-
-	/**
-	 * Get the user's avatar image.
-	 *
-	 * @return string
-	 */
-	public function getPhotocssAttribute()
-	{
-		if($this->avatar) {
-			return url('img/avatar/' . $this->avatar);
-		}
-
-		return Gravatar::src($this->email, 100);
 	}
 
 	/**

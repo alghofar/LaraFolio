@@ -83,12 +83,19 @@ class AuthController extends BaseController {
 		$credentials	= Input::only(['username', 'password']);
 		$remember		= Input::get('remember', false);
 
+		// Is the user suspended?
+		$user = $this->users->findByEmailOrUsername($credentials['username']);
+		if (( ! empty($credentials['username']) && $user != null && $user->suspended == true)) {
+			return $this->redirectRoute('auth.getLogin', [], ['error' => '<p>Impossible to log you in, cupcake! Your account has been suspended.</p>']);
+		}
+
 		// Login by Email if we detect an '@'
 		if (str_contains($credentials['username'], '@')) {
 			$credentials['email'] = $credentials['username'];
 			unset($credentials['username']);
 		}
 
+		// Let's authenticate this user
 		if (Auth::attempt($credentials, $remember)) {
 			return $this->redirectIntended(route('home'), ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
 		}

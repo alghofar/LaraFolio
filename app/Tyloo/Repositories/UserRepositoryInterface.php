@@ -14,7 +14,7 @@ interface UserRepositoryInterface
 	public function findAllPaginated($perPage = 200);
 
 	/**
-	 * Find a user by it's username.
+	 * Find a user by its username.
 	 *
 	 * @param  string $username
 	 * @return \Tyloo\User
@@ -22,12 +22,20 @@ interface UserRepositoryInterface
 	public function findByUsername($username);
 
 	/**
-	 * Find a user by it's email.
+	 * Find a user by its email.
 	 *
 	 * @param  string $email
 	 * @return \Tyloo\User
 	 */
 	public function findByEmail($email);
+
+	/**
+	 * Find a user by its username or its email.
+	 *
+	 * @param  string $user
+	 * @return \Tyloo\User
+	 */
+	public function findByEmailOrUsername($user);
 
 	/**
 	 * Require a user by it's username.

@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"thomaswelton/laravel-gravatar": "0.0.*"
+		"thomaswelton/laravel-gravatar": "0.0.*",
+		"mccool/laravel-auto-presenter": "dev-master"
 	},
 	"require-dev": {
 		"way/generators": "dev-master",

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->string('description')->nullable()->default(NULL);
 			$table->string('avatar')->nullable()->default(NULL);
 			$table->boolean('is_admin')->default(0);
+			$table->boolean('suspended')->default(0);
 			$table->timestamps();
 		});
 	}

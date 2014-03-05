@@ -10,31 +10,29 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	/**
 	 * @var array
 	 */
-	protected $user = [
-		'username'		=> 'User',
-		'password'		=> '123456',
-		'bad_password'	=> '12345',
-		'first_name'	=> 'Julien',
-		'last_name'		=> 'Bonvarlet',
-		'location'		=> 'Paris (France)',
-		'description'	=> '<p>Hi, I am a French PHP developer and I love Laravel!</p>',
-	];
-
-	/**
-	 * @var array
-	 */
-	protected $user_credentials = [
-		'username'		=> 'User',
-		'password'		=> '123456',
-	];
-
-	/**
-	 * @var array
-	 */
-	protected $admin = [
-		'username'		=> 'Admin',
-		'password'		=> '123456',
-		'bad_password'	=> '12345',
+	protected $users = [
+		'user' => [
+			'username'		=> 'User',
+			'password'		=> '123456',
+			'bad_password'	=> '12345',
+			'first_name'	=> 'Julien',
+			'last_name'		=> 'Bonvarlet',
+			'location'		=> 'Paris (France)',
+			'description'	=> '<p>Hi, I am a French PHP developer and I love Laravel!</p>',
+		],
+		'user_credentials' => [
+			'username'		=> 'User',
+			'password'		=> '123456',
+		],
+		'suspended' => [
+			'username'		=> 'Suspended',
+			'password'		=> '123456',
+		],
+		'admin' => [
+			'username'		=> 'Admin',
+			'password'		=> '123456',
+			'bad_password'	=> '12345',
+		],
 	];
 
 	/**
@@ -111,7 +109,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	 */
 	public function beUser() 
 	{
-		Auth::attempt($this->user_credentials);
+		Auth::attempt($this->users['user_credentials']);
 	}
 
 	/**
@@ -119,7 +117,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	 */
 	public function beAdmin() 
 	{
-		Auth::attempt($this->admin);
+		Auth::attempt($this->users['admin']);
 	}
 
 }

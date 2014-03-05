@@ -34,15 +34,19 @@ App::after(function($request, $response)
 */
 
 Route::filter('admin', function () {
-	if (Auth::guest() || (Auth::check() && ! Auth::user()->isAdmin())) {
-		return Redirect::route('auth.getLogin');
+
+	if (Auth::guest()) {
+		return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
+	}
+	else if (Auth::check() && ! Auth::user()->isAdmin()) {
+		return Redirect::home()->withError('<p>You must be an Administrator to access this page.</p>');
 	}
 });
 
 Route::filter('auth', function()
 {
 	if (Auth::guest()) {
-		return Redirect::route('auth.getLogin');
+		return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
 	}
 });
 

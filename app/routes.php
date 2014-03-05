@@ -1,6 +1,6 @@
 <?php
 
-// Namespacing the Controllers
+// Namespacing the Root Controllers
 Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 
 	// Guest Routes
@@ -37,4 +37,14 @@ Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 	// Public Profile
 	Route::get('{username}/profile', ['as' => 'users.getProfilePublic', 'uses' => 'UserController@getProfilePublic']);
 
+});
+
+// Namespacing the Admin Controllers
+Route::group(['namespace' => 'Tyloo\Controllers\Admin'], function() {
+	Route::group(['prefix' => 'admin', 'before' => 'admin'], function() {
+			Route::get('users/{id}/suspend', ['as' => 'admin.users.suspend', 'uses' => 'UsersController@suspend']);
+			Route::get('users/{id}/unsuspend', ['as' => 'admin.users.unsuspend', 'uses' => 'UsersController@unsuspend']);
+			Route::get('users/{id}/delete', ['as' => 'admin.users.delete', 'uses' => 'UsersController@destroy']);
+			Route::resource('users', 'UsersController');
+		});
 });

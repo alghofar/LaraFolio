@@ -1,3 +1,7 @@
+/* General */
+table a, .table a { text-decoration:none; }
+.avatar { width:20px; height:20px; }
+
 /* Sticky footer trick */
 html { position:relative; min-height:100%; }
 body { margin-bottom:60px; }

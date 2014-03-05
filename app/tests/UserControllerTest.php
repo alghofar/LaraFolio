@@ -76,8 +76,8 @@ class UserControllerTest extends TestCase {
 
 		Input::replace($input = [
 			'IgnoreCSRFTokenError' => true,
-			'username'				=> $this->user['username'],
-			'password'				=> $this->user['password'],
+			'username'				=> $this->users['user']['username'],
+			'password'				=> $this->users['user']['password'],
 			'password_confirmation'	=> '',
 		]);
 
@@ -91,9 +91,9 @@ class UserControllerTest extends TestCase {
 
 		Input::replace($input = [
 			'IgnoreCSRFTokenError' => true,
-			'username'				=> $this->user['username'],
-			'password'				=> $this->user['password'],
-			'password_confirmation'	=> $this->user['bad_password'],
+			'username'				=> $this->users['user']['username'],
+			'password'				=> $this->users['user']['password'],
+			'password_confirmation'	=> $this->users['user']['bad_password'],
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
@@ -106,7 +106,7 @@ class UserControllerTest extends TestCase {
 
 		Input::replace($input = [
 			'IgnoreCSRFTokenError' => true,
-			'username'				=> $this->admin['username'],
+			'username'				=> $this->users['admin']['username'],
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
@@ -194,10 +194,10 @@ class UserControllerTest extends TestCase {
 
 		Input::replace($input = [
 			'IgnoreCSRFTokenError' => true,
-			'first_name'	=> $this->user['first_name'],
-			'last_name'		=> $this->user['last_name'],
-			'location'		=> $this->user['location'],
-			'description'	=> $this->user['description'],
+			'first_name'	=> $this->users['user']['first_name'],
+			'last_name'		=> $this->users['user']['last_name'],
+			'location'		=> $this->users['user']['location'],
+			'description'	=> $this->users['user']['description'],
 		]);
 
 		$this->call('POST', URL::route('users.postProfile'), $input);

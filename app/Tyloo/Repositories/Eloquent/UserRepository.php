@@ -36,7 +36,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	}
 
 	/**
-	 * Find a user by it's username.
+	 * Find a user by its username.
 	 *
 	 * @param  string $username
 	 * @return \Tyloo\User
@@ -47,7 +47,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	}
 
 	/**
-	 * Find a user by it's email.
+	 * Find a user by its email.
 	 *
 	 * @param  string $email
 	 * @return \Tyloo\User
@@ -55,6 +55,17 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	public function findByEmail($email)
 	{
 		return $this->model->whereEmail($email)->first();
+	}
+
+	/**
+	 * Find a user by its username or its email.
+	 *
+	 * @param  string $user
+	 * @return \Tyloo\User
+	 */
+	public function findByEmailOrUsername($user)
+	{
+		return $this->model->where('username', '=', $user)->orWhere('email', '=', $user)->first();
 	}
 
 	/**

@@ -184,7 +184,7 @@ For ease of development you'll want to enable a couple useful packages. This req
 Uncomment the lines above in order to activate the development tools. Then you'll want to run a composer update with the dev flag.
 
 ```
-php composer.phar update
+composer update
 ```
 This adds the Laravel Generators.
 

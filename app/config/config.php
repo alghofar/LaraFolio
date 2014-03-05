@@ -5,7 +5,7 @@ return [
 	'view_throttle_time' => 3600,
 
 	'version' => '1.0.0',
-	'version_date' => '27/02/2014',
+	'version_date' => '05/03/2014',
 
 	// Admin email (the notifications are sent to this email, also see the mail.php config for the "From" address)
 	'admin_email' => 'jbonva@gmail.com',
@@ -13,9 +13,9 @@ return [
 	// available user permission types that are matched by user_type column in the users table
 	'user_types' => [
 
-		'admin' 	=> 100,
-		'reviewer'  => 20,
-		'user'		=> 10
+		'admin'		=> 100,
+		'moderator' => 20,
+		'user'		=> 10,
 
 	],
 

@@ -277,18 +277,69 @@ class AuthControllerTest extends TestCase {
 		$this->assertSessionHas('error');
 	}
 
+	public function test_post_login_form_user_suspended() {
+		$this->beGuest();
+
+		Input::replace($input = [
+			'IgnoreCSRFTokenError' => true,
+			'username' => $this->users['suspended']['username'],
+			'password' => $this->users['suspended']['password'],
+		]);
+
+		$this->call('POST', URL::route('auth.postLogin'), $input);
+		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->assertSessionHas('error');
+	}
+
 	public function test_post_login_form_success() {
 		$this->beGuest();
 
 		Input::replace($input = [
 			'IgnoreCSRFTokenError' => true,
-			'username' => $this->user['username'],
-			'password' => $this->user['password'],
+			'username' => $this->users['user']['username'],
+			'password' => $this->users['user']['password'],
 		]);
 
 		$this->call('POST', URL::route('auth.postLogin'), $input);
 		$this->assertRedirectedToRoute('home');
 		$this->assertSessionHas('success');
+	}
+
+	public function test_post_login_error_after_admin_page_forbidden() {
+		// TODO
+		/*$this->beGuest();
+
+		Input::replace($input = [
+			'IgnoreCSRFTokenError' => true,
+			'username' => $this->users['user']['username'],
+			'password' => $this->users['user']['password'],
+		]);
+
+		$this->session(['url.intended' => URL::route('admin.users.index')]);
+
+		$this->call('GET', URL::route('auth.postLogin'));
+		$this->assertSessionHas('url.intended');
+
+		/*
+
+		$this->call('POST', URL::route('auth.postLogin'), $input);
+		$this->assertRedirectedToRoute('home');
+		$this->assertSessionHas('error');*/
+	}
+
+	public function test_get_admin_page_forbidden() {
+		$this->beUser();
+
+		$this->call('GET', URL::route('admin.users.index'));
+		$this->assertRedirectedToRoute('home');
+		$this->assertSessionHas('error');
+	}
+
+	public function test_get_admin_page_allowed() {
+		$this->beAdmin();
+
+		$this->call('GET', URL::route('admin.users.index'));
+		$this->assertResponseOk();
 	}
 
 	/*
