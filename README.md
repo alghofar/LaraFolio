@@ -174,12 +174,14 @@ For ease of development you'll want to enable a couple useful packages. This req
 
         [...]
 
-        /* Uncomment for use in development */
-        // 'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
+        // Uncomment those lines below for use in development
+        //'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
+        //'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helper
+        //'Barryvdh\Debugbar\ServiceProvider', // Debug Bar
 
     ),
 ```
-Uncomment the Laravel Generators. Then you'll want to run a composer update with the dev flag.
+Uncomment the lines above in order to activate the development tools. Then you'll want to run a composer update with the dev flag.
 
 ```
 php composer.phar update

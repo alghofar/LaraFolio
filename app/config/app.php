@@ -112,6 +112,11 @@ return [
 		'Tyloo\Providers\NavigationServiceProvider', // Navigation
 		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider', // Gravatar
 
+		// Uncomment those lines below for use in development
+		//'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
+		//'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helper
+		//'Barryvdh\Debugbar\ServiceProvider', // Debug Bar
+
 	],
 
 	/*
