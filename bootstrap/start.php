@@ -27,7 +27,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 
 	// Add your local hostname here
-	'local' => array('teagaeg'),
+	'local' => array('vaprobash'),
 
 ));
 
