@@ -9,6 +9,11 @@ class AuthControllerTest extends TestCase {
 	*/
 
 	// GET /register
+
+	/**
+	 * Test Register Form (Guest)
+	 * @return void
+	 */
 	public function test_get_register_form_guest()
 	{
 		$this->beGuest();
@@ -17,6 +22,10 @@ class AuthControllerTest extends TestCase {
 		$this->assertResponseOk();
 	}
 
+	/**
+	 * Test Register Form (User)
+	 * @return void
+	 */
 	public function test_get_register_form_user()
 	{
 		$this->beUser();

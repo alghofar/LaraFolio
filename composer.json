@@ -9,7 +9,9 @@
 	},
 	"require-dev": {
 		"way/generators": "dev-master",
-		"mockery/mockery": "dev-master"
+		"mockery/mockery": "dev-master",
+		"barryvdh/laravel-ide-helper": "1.*",
+		"barryvdh/laravel-debugbar": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -29,6 +31,8 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
+			"php artisan ide-helper:generate",
+			"php artisan debugbar:publish",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [

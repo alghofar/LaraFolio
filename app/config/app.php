@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => true,
+	'debug' => false,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'Europe/Paris',
+	'timezone' => 'UTC',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -110,7 +110,6 @@ return [
 		// Custom Providers
 		'Tyloo\Providers\RepositoryServiceProvider', // Repositories
 		'Tyloo\Providers\NavigationServiceProvider', // Navigation
-		'Way\Generators\GeneratorsServiceProvider', // Laravel Generators
 		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider', // Gravatar
 
 	],

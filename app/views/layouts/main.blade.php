@@ -30,10 +30,8 @@
 
 		<!-- Content -->
 		<div class="container">
-			<div class="row">
-				<!-- Notifications -->
-				@include('partials.notifications')
-			</div>
+			<!-- Notifications -->
+			@include('partials.notifications')
 			<!-- /Notifications -->
 			@yield('content')
 		</div>
