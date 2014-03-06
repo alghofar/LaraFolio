@@ -42,7 +42,7 @@ class UserPresenter extends BasePresenter
 	 *
 	 * @return string
 	 */
-	public function suspended()
+	public function isSuspended()
 	{
 		return $this->resource->suspended == 1 ? 'Yes' : 'No';
 	}

@@ -111,7 +111,6 @@ class UserController extends BaseController {
 	public function profilePublic($username)
 	{
 		$user = $this->users->findByUsername($username);
-		return $user;
 		return $this->view('users.profilePublic', compact('user'));
 	}
 

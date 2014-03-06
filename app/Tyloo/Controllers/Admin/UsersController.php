@@ -55,18 +55,7 @@ class UsersController extends BaseController
 	 */
 	public function store()
 	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+		dd(\Input::all());
 	}
 
 	/**
@@ -77,7 +66,8 @@ class UsersController extends BaseController
 	 */
 	public function edit($id)
 	{
-		//
+		$user = $this->users->findById($id);
+		return $this->view('admin.users.edit', compact('user'));
 	}
 
 	/**
@@ -88,7 +78,7 @@ class UsersController extends BaseController
 	 */
 	public function update($id)
 	{
-		//
+		dd(\Input::all());
 	}
 
 	/**
@@ -99,7 +89,9 @@ class UsersController extends BaseController
 	 */
 	public function destroy($id)
 	{
-		//
+		$user = $this->users->findById($id);
+		$this->users->delete($user);
+		return $this->redirectRoute('admin.users.index', ['success' => '<p>User \'' . $user->username . '\' deleted successfully!']);
 	}
 
 	/**
@@ -109,7 +101,9 @@ class UsersController extends BaseController
 	 */
 	public function suspend($id)
 	{
-		//
+		$user = $this->users->findById($id);
+		$this->users->suspend($user);
+		return $this->redirectRoute('admin.users.index', ['success' => '<p>User \'' . $user->username . '\' suspended successfully!']);
 	}
 
 	/**
@@ -119,7 +113,9 @@ class UsersController extends BaseController
 	 */
 	public function restore($id)
 	{
-		//
+		$user = $this->users->findById($id);
+		$this->users->restore($user);
+		return $this->redirectRoute('admin.users.index', ['success' => '<p>User \'' . $user->username . '\' restored successfully!']);
 	}
 
 }

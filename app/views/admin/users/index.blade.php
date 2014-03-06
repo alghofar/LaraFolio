@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-lg-12"> 
 			<div class="page-header">
-			  <h1>Showing all users ({{Tyloo\User::count()}})</h1>
+			  <h1>Showing all users ({{Tyloo\User::count()}})<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Add an User</a></h1>
 			</div>
 		</div>
 	</div>
@@ -34,9 +34,16 @@
 				       	<td>{{ $user->fullName }}</td>
 				       	<td>{{ $user->location }}</td>
 				       	<td>{{ $user->group }}</td>
-				       	<td>{{ $user->suspended }}</td>
+				       	<td>{{ $user->isSuspended }}</td>
 				       	<td>{{ $user->created_at }}</td>
-				       	<td><a href="{{ URL::route('admin.users.edit', $user->id) }}" class="btn btn-primary btn-xs">Edit</a> <a href="{{ URL::route('admin.users.suspend', $user->id) }}" class="btn btn-primary btn-xs">Suspend</a> <a href="{{ URL::route('admin.users.delete', $user->id) }}" class="btn btn-primary btn-xs">Delete</a></td>
+				       	<td>
+				       		<a href="{{ URL::route('admin.users.edit', $user->id) }}" class="btn btn-primary btn-xs">Edit</a>
+				       		@if($user->suspended == 0)
+				       			<a href="{{ URL::route('admin.users.suspend', $user->id) }}" class="btn btn-primary btn-xs">Suspend</a>
+				       		@else
+				       			<a href="{{ URL::route('admin.users.restore', $user->id) }}" class="btn btn-primary btn-xs">Restore</a>
+				       		@endif
+				       		<a href="{{ URL::route('admin.users.delete', $user->id) }}" class="btn btn-primary btn-xs">Delete</a></td>
 				     </tr>
 				    @endforeach
 			    </tbody>

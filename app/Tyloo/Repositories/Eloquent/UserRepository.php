@@ -203,6 +203,43 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	}
 
 	/**
+	 * Suspend the user.
+	 *
+	 * @param  \Tyloo\User $user
+	 * @return \Tyloo\User
+	 */
+	public function suspend(User $user)
+	{
+		$user->suspended = 1;
+
+		return $user->save();
+	}
+
+	/**
+	 * Restore the user.
+	 *
+	 * @param  \Tyloo\User $user
+	 * @return \Tyloo\User
+	 */
+	public function restore(User $user)
+	{
+		$user->suspended = 0;
+
+		return $user->save();
+	}
+
+	/**
+	 * Delete the user.
+	 *
+	 * @param  \Tyloo\User $user
+	 * @return \Tyloo\User
+	 */
+	public function delete(User $user)
+	{
+		$user->delete();
+	}
+
+	/**
 	 * Log the user out.
 	 *
 	 * @return \Tyloo\User
