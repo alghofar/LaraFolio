@@ -12,7 +12,7 @@
 						<div class="input-group">
 							{{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('users.create.form.username.placeholder'), 'disabled' => 'disabled']) }}
 						<span class="input-group-btn">
-							{{ link_to_route('users.getSettings', 'Change it!', null, ['class' => 'btn btn-primary']) }}
+							{{ link_to_route('users.settings', 'Change it!', null, ['class' => 'btn btn-primary']) }}
 						</span>
 						</div>
 					</div>

@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration {
 			$table->string('avatar')->nullable()->default(NULL);
 			$table->boolean('is_admin')->default(0);
 			$table->boolean('suspended')->default(0);
+			$table->string('activation_code')->nullable()->default(NULL);
+			$table->boolean('activated')->default(0);
 			$table->timestamps();
 		});
 	}

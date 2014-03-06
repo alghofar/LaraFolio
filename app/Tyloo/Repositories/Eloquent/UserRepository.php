@@ -1,11 +1,9 @@
 <?php namespace Tyloo\Repositories\Eloquent;
 
 use Tyloo\User;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Session;
-use Tyloo\Exceptions\UserNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Tyloo\Repositories\UserRepositoryInterface;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
@@ -33,6 +31,17 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 		return $this->model
 					->orderBy('created_at', 'desc')
 					->paginate($perPage);
+	}
+
+	/**
+	 * Find a user by its id.
+	 *
+	 * @param  string $id
+	 * @return \Tyloo\User
+	 */
+	public function findById($id)
+	{
+		return $this->model->find($id);
 	}
 
 	/**
@@ -84,6 +93,39 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 		throw new UserNotFoundException('The user "' . $username . '" does not exist!');
 	}
 
+	public function checkValidForLogin($credentials) {
+		// Is the user suspended?
+		$user = $this->findByEmailOrUsername($credentials['username']);
+		if (! empty($credentials['username']) && $user != null) {
+			if ($user->suspended == true) {
+				return ['error' => '<p>Impossible to log you in, cupcake! Your account has been suspended.</p>'];
+			}
+			else if ($user->activated == false) {
+				return ['error' => '<p>Impossible to log you in, cupcake! Your account has not been activated, yet.</p>'];
+			}
+		}
+
+		// Login by Email if we detect an '@'
+		if (str_contains($credentials['username'], '@')) {
+			$credentials['email'] = $credentials['username'];
+			unset($credentials['username']);
+		}
+
+		$remember = 0;
+		// Remember the user?
+		if (!empty ($credentials['remember'])) {
+			$remember = 1;
+			unset($credentials['remember']);
+		}
+
+		// Let's authenticate this user
+		if (Auth::attempt($credentials, $remember)) {
+			return false;
+		}
+
+		return ['error' => '<h5>E-mail or password was incorrect, please try again</h5>'];
+	}
+
 	/**
 	 * Create a new user in the database.
 	 *
@@ -94,9 +136,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	{
 		$user = $this->getNew();
 
-		$user->email	= e($data['email']);
-		$user->username	= e($data['username']);
-		$user->password	= Hash::make($data['password']);
+		$user->email			= e($data['email']);
+		$user->username			= e($data['username']);
+		$user->password			= Hash::make($data['password']);
+		$user->activation_code	= Hash::make(Config::get('app.key'));
 
 		$user->save();
 
@@ -147,6 +190,29 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	}
 
 	/**
+	 * Update the user's profile.
+	 *
+	 * @param  \Tyloo\User $user
+	 * @return \Tyloo\User
+	 */
+	public function activate(User $user)
+	{
+		$user->activated	= 1;
+
+		return $user->save();
+	}
+
+	/**
+	 * Log the user out.
+	 *
+	 * @return \Tyloo\User
+	 */
+	public function logout()
+	{
+		Auth::logout();
+	}
+
+	/**
 	 * Get the user registration form service.
 	 *
 	 * @return \Tyloo\Services\Forms\RegistrationForm
@@ -154,6 +220,16 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	public function getRegistrationForm()
 	{
 		return app('Tyloo\Services\Forms\RegistrationForm');
+	}
+
+	/**
+	 * Get the user login form service.
+	 *
+	 * @return \Tyloo\Services\Forms\LoginForm
+	 */
+	public function getLoginForm()
+	{
+		return app('Tyloo\Services\Forms\LoginForm');
 	}
 
 	/**

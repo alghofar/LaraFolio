@@ -7,12 +7,13 @@ Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 	Route::group(['before' => 'guest'], function() {
 
 		// Register
-		Route::get('register', ['as' => 'auth.getRegister', 'uses' => 'AuthController@getRegister']);
+		Route::get('register', ['as' => 'auth.register', 'uses' => 'AuthController@register']);
 		Route::post('register', ['as' => 'auth.postRegister', 'uses' => 'AuthController@postRegister']);
 
 		// Login
-		Route::get('login', ['as' => 'auth.getLogin', 'uses' => 'AuthController@getLogin']);
+		Route::get('login', ['as' => 'auth.login', 'uses' => 'AuthController@login']);
 		Route::post('login', ['as' => 'auth.postLogin', 'uses' => 'AuthController@postLogin']);
+		Route::get('activate/{user_id}/{token}', ['as' => 'auth.activate', 'uses' => 'AuthController@activate']);
 
 	});
 
@@ -20,14 +21,14 @@ Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 	Route::group(['before' => 'auth'], function() {
 
 		// Logout
-		Route::get('logout', ['as' => 'auth.getLogout', 'uses' => 'AuthController@getLogout']);
+		Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
 
 		// My Settings
-		Route::get('settings', ['as' => 'users.getSettings', 'uses' => 'UserController@getSettings']);
+		Route::get('settings', ['as' => 'users.settings', 'uses' => 'UserController@settings']);
 		Route::post('settings', ['as' => 'users.postSettings', 'uses' => 'UserController@postSettings']);
 
 		// My Profile
-		Route::get('profile', ['as' => 'users.getProfile', 'uses' => 'UserController@getProfile']);
+		Route::get('profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
 		Route::post('profile', ['as' => 'users.postProfile', 'uses' => 'UserController@postProfile']);
 	});
 
@@ -35,16 +36,16 @@ Route::group(['namespace' => 'Tyloo\Controllers'], function() {
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 	// Public Profile
-	Route::get('{username}/profile', ['as' => 'users.getProfilePublic', 'uses' => 'UserController@getProfilePublic']);
+	Route::get('{username}/profile', ['as' => 'users.profilePublic', 'uses' => 'UserController@profilePublic']);
 
 });
 
 // Namespacing the Admin Controllers
 Route::group(['namespace' => 'Tyloo\Controllers\Admin'], function() {
 	Route::group(['prefix' => 'admin', 'before' => 'admin'], function() {
-			Route::get('users/{id}/suspend', ['as' => 'admin.users.suspend', 'uses' => 'UsersController@suspend']);
-			Route::get('users/{id}/unsuspend', ['as' => 'admin.users.unsuspend', 'uses' => 'UsersController@unsuspend']);
-			Route::get('users/{id}/delete', ['as' => 'admin.users.delete', 'uses' => 'UsersController@destroy']);
-			Route::resource('users', 'UsersController');
-		});
+		Route::get('users/{id}/suspend', ['as' => 'admin.users.suspend', 'uses' => 'UsersController@suspend']);
+		Route::get('users/{id}/unsuspend', ['as' => 'admin.users.unsuspend', 'uses' => 'UsersController@unsuspend']);
+		Route::get('users/{id}/delete', ['as' => 'admin.users.delete', 'uses' => 'UsersController@destroy']);
+		Route::resource('users', 'UsersController');
+	});
 });

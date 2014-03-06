@@ -69,7 +69,7 @@ Route::filter('auth.basic', function()
 Route::filter('guest', function()
 {
 	if (Auth::check()) {
-		return Redirect::route('users.getProfile');
+		return Redirect::route('users.profile');
 	}
 });
 

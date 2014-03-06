@@ -40,7 +40,7 @@ class UserController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function getSettings()
+	public function settings()
 	{
 		$user = Auth::user();
 		return $this->view('users.settings', compact('user'));
@@ -59,14 +59,14 @@ class UserController extends BaseController {
 
 		// If the entry is not valid, we redirect back with the errors
 		if ( ! $form->isValid()) {
-			return $this->redirectRouteInput('users.getSettings', [], ['errors' => $form->getErrors()]);
+			return $this->redirectRouteInput('users.settings', ['errors' => $form->getErrors()]);
 		}
 
 		// We update the user
 		$this->users->updateSettings($this->user, Input::all());
 
 		// We redirect to the profile page
-		return $this->redirectRoute('users.getSettings', [], ['success' => '<p>Your Settings have been updated!</p>']);
+		return $this->redirectRoute('users.settings', ['success' => '<p>Your Settings have been updated!</p>']);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class UserController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function getProfile()
+	public function profile()
 	{
 		$user = Auth::user();
 		return $this->view('users.profile', compact('user'));
@@ -92,14 +92,14 @@ class UserController extends BaseController {
 
 		// If the entry is not valid, we redirect back with the errors
 		if ( ! $form->isValid()) {
-			return $this->redirectRouteInput('users.getProfile', [], ['errors' => $form->getErrors()]);
+			return $this->redirectRouteInput('users.profile', ['errors' => $form->getErrors()]);
 		}
 
 		// We update the user
 		$this->users->updateProfile($this->user, Input::all());
 
 		// We redirect to the profile page
-		return $this->redirectRoute('users.getProfile', [], ['success' => '<p>Your Profile have been updated!</p>']);
+		return $this->redirectRoute('users.profile', ['success' => '<p>Your Profile have been updated!</p>']);
 	}
 
 	/**
@@ -108,7 +108,7 @@ class UserController extends BaseController {
 	 * @param  string  $username
 	 * @return Response
 	 */
-	public function getProfilePublic($username)
+	public function profilePublic($username)
 	{
 		$user = $this->users->findByUsername($username);
 		return $user;

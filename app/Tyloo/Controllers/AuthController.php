@@ -1,8 +1,6 @@
 <?php namespace Tyloo\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Tyloo\Repositories\UserRepositoryInterface;
+use Tyloo\Services\AuthEvents;
 
 class AuthController extends BaseController {
 
@@ -13,26 +11,27 @@ class AuthController extends BaseController {
 	 */
 	protected $users;
 
+	protected $authEvent;
+
 	/**
 	 * Create a new AuthController instance.
 	 *
 	 * @param  \Tyloo\Repositories\UserRepositoryInterface $users
 	 * @return void
 	 */
-	public function __construct(UserRepositoryInterface $users)
+	public function __construct(AuthEvents $authEvent)
 	{
 		parent::__construct();
 
-		$this->users = $users;
+		$this->authEvent = $authEvent;
 	}
-
 
 	/**
 	 * Show registration form.
 	 *
 	 * @return \Response
 	 */
-	public function getRegister()
+	public function register()
 	{
 		return $this->view('auth.register');
 	}
@@ -44,22 +43,11 @@ class AuthController extends BaseController {
 	 */
 	public function postRegister()
 	{
-		// We populate the form
-		$form = $this->users->getRegistrationForm();
-
-		// If the entry is not valid, we redirect back with the errors
-		if ( ! $form->isValid()) {
-			return $this->redirectRouteInput('auth.getRegister', [], ['errors' => $form->getErrors()]);
+		if ( ! $this->authEvent->register()) {
+			return $this->redirectRouteInput('auth.register', $this->authEvent->errors());
 		}
 
-		// We create the user
-		if ($user = $this->users->create($form->getInputData())) {
-			Auth::login($user);
-
-			return $this->redirectRoute('home', [], ['success' => '<h4>Welcome to LaraFolio!</h4><p>Get into the awesomeness!</p>']);
-		}
-
-		return $this->redirectRoute('home');
+		return $this->redirectRoute('home', ['success' => '<h4>Welcome to LaraFolio!</h4><p>To complete your registration, enter the code from the email we just sent you!</p>']);
 	}
 
 	/**
@@ -67,7 +55,7 @@ class AuthController extends BaseController {
 	 *
 	 * @return \Response
 	 */
-	public function getLogin()
+	public function login()
 	{
 		return $this->view('auth.login');
 	}
@@ -79,28 +67,11 @@ class AuthController extends BaseController {
 	 */
 	public function postLogin()
 	{
-		// We get the parameters
-		$credentials	= Input::only(['username', 'password']);
-		$remember		= Input::get('remember', false);
-
-		// Is the user suspended?
-		$user = $this->users->findByEmailOrUsername($credentials['username']);
-		if (( ! empty($credentials['username']) && $user != null && $user->suspended == true)) {
-			return $this->redirectRoute('auth.getLogin', [], ['error' => '<p>Impossible to log you in, cupcake! Your account has been suspended.</p>']);
+		if ( ! $this->authEvent->login()) {
+			return $this->redirectRouteInput('auth.login', $this->authEvent->errors());
 		}
 
-		// Login by Email if we detect an '@'
-		if (str_contains($credentials['username'], '@')) {
-			$credentials['email'] = $credentials['username'];
-			unset($credentials['username']);
-		}
-
-		// Let's authenticate this user
-		if (Auth::attempt($credentials, $remember)) {
-			return $this->redirectIntended(route('home'), ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
-		}
-
-		return $this->redirectRoute('auth.getLogin', [], ['error' => '<h5>E-mail or password was incorrect, please try again</h5>']);
+		return $this->redirectRoute('home', ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
 	}
 
 	/**
@@ -108,15 +79,25 @@ class AuthController extends BaseController {
 	 *
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function getLogout()
+	public function logout()
 	{
-		if(Auth::guest()) {
-			return $this->redirectRoute('auth.getLogin');
+		$this->authEvent->logout();
+
+		return $this->redirectRoute('auth.login', ['info' => '<p>You were successfully logged out! See you soon!</p>']);
+	}
+
+	/**
+	 * Activate the user.
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function activate($user_id, $token)
+	{
+		if ( ! $this->authEvent->activate($user_id, $token)) {
+			return $this->redirectRouteInput('auth.login', $this->authEvent->errors());
 		}
 
-		Auth::logout();
-
-		return $this->redirectRoute('auth.getLogin', [], ['info' => '<p>You were successfully logged out! See you soon!</p>']);
+		return $this->redirectRoute('auth.login', ['success' => '<p>Your account has been successfully activated!</p>']);
 	}
 
 }

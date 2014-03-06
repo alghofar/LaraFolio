@@ -34,7 +34,6 @@ class UsersController extends BaseController
 	public function index()
 	{
 		$users = $this->users->findAllPaginated();
-		//return $users;
 
         $this->view('admin.users.index', compact('users'));
 	}
@@ -46,7 +45,7 @@ class UsersController extends BaseController
 	 */
 	public function create()
 	{
-		//
+		return $this->view('admin.users.create');
 	}
 
 	/**

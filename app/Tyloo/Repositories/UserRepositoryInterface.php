@@ -14,6 +14,14 @@ interface UserRepositoryInterface
 	public function findAllPaginated($perPage = 200);
 
 	/**
+	 * Find a user by its id.
+	 *
+	 * @param  string $id
+	 * @return \Tyloo\User
+	 */
+	public function findById($id);
+
+	/**
 	 * Find a user by its username.
 	 *
 	 * @param  string $username

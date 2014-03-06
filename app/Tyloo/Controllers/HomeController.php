@@ -1,5 +1,7 @@
 <?php namespace Tyloo\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends BaseController {
 
 	/**
@@ -18,6 +20,7 @@ class HomeController extends BaseController {
 	 */
 	public function index()
 	{
+		Auth::logout();
 		return $this->view('home.index');
 	}
 

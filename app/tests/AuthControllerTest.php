@@ -18,7 +18,7 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->beGuest();
 
-		$this->call('GET', URL::route('auth.getRegister'));
+		$this->call('GET', URL::route('auth.register'));
 		$this->assertResponseOk();
 	}
 
@@ -30,8 +30,8 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->beUser();
 
-		$this->call('GET', URL::route('auth.getRegister'));
-		$this->assertRedirectedToRoute('users.getProfile');
+		$this->call('GET', URL::route('auth.register'));
+		$this->assertRedirectedToRoute('users.profile');
 	}
 
 	// POST /register
@@ -48,7 +48,7 @@ class AuthControllerTest extends TestCase {
 		$this->beGuest();
 
 		$this->call('POST', URL::route('auth.postRegister'), ['IgnoreCSRFTokenError' => true]);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -65,7 +65,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -82,7 +82,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -99,7 +99,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -116,7 +116,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -133,7 +133,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -150,7 +150,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -167,7 +167,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -184,7 +184,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
@@ -201,13 +201,28 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postRegister'), $input);
-		$this->assertRedirectedToRoute('auth.getRegister');
+		$this->assertRedirectedToRoute('auth.register');
 		$this->assertSessionHas('errors');
 	}
 
 	public function test_post_register_form_success()
 	{
 		$this->beGuest();
+
+		Mail::shouldReceive('queue')->once()
+			->with('emails.auth.welcome', Mockery::on(function($data) {
+				return true;
+			}), Mockery::on(function($closure) {
+				$message = Mockery::mock('Illuminate\Mailer\Message');
+				$message->shouldReceive('to')
+					->with('test@test.com')
+					->andReturn(Mockery::self());
+				$message->shouldReceive('subject')
+					->with(trans('emails.welcome_title', ['website_name' => trans('pages.website_title')]))
+					->andReturn(Mockery::self());
+				$closure($message);
+				return true;
+			}));
 
 		Input::replace($input = [
 			'IgnoreCSRFTokenError' => true,
@@ -233,7 +248,7 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->beGuest();
 
-		$this->call('GET', URL::route('auth.getLogin'));
+		$this->call('GET', URL::route('auth.login'));
 		$this->assertResponseOk();
 	}
 
@@ -241,8 +256,8 @@ class AuthControllerTest extends TestCase {
 	{
 		$this->beUser();
 
-		$this->call('GET', URL::route('auth.getLogin'));
-		$this->assertRedirectedToRoute('users.getProfile');
+		$this->call('GET', URL::route('auth.login'));
+		$this->assertRedirectedToRoute('users.profile');
 	}
 
 	// POST /login
@@ -259,7 +274,7 @@ class AuthControllerTest extends TestCase {
 		$this->beGuest();
 
 		$this->call('POST', URL::route('auth.postLogin'), ['IgnoreCSRFTokenError' => true]);
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->assertRedirectedToRoute('auth.login');
 		$this->assertSessionHas('error');
 	}
 
@@ -273,7 +288,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postLogin'), $input);
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->assertRedirectedToRoute('auth.login');
 		$this->assertSessionHas('error');
 	}
 
@@ -287,7 +302,7 @@ class AuthControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('auth.postLogin'), $input);
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->assertRedirectedToRoute('auth.login');
 		$this->assertSessionHas('error');
 	}
 
@@ -303,28 +318,6 @@ class AuthControllerTest extends TestCase {
 		$this->call('POST', URL::route('auth.postLogin'), $input);
 		$this->assertRedirectedToRoute('home');
 		$this->assertSessionHas('success');
-	}
-
-	public function test_post_login_error_after_admin_page_forbidden() {
-		// TODO
-		/*$this->beGuest();
-
-		Input::replace($input = [
-			'IgnoreCSRFTokenError' => true,
-			'username' => $this->users['user']['username'],
-			'password' => $this->users['user']['password'],
-		]);
-
-		$this->session(['url.intended' => URL::route('admin.users.index')]);
-
-		$this->call('GET', URL::route('auth.postLogin'));
-		$this->assertSessionHas('url.intended');
-
-		/*
-
-		$this->call('POST', URL::route('auth.postLogin'), $input);
-		$this->assertRedirectedToRoute('home');
-		$this->assertSessionHas('error');*/
 	}
 
 	public function test_get_admin_page_forbidden() {
@@ -352,15 +345,15 @@ class AuthControllerTest extends TestCase {
 	public function test_get_logout_not_logged_in() {
 		$this->beGuest();
 
-		$this->call('GET', URL::route('auth.getLogout'));
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->call('GET', URL::route('auth.logout'));
+		$this->assertRedirectedToRoute('auth.login');
 	}
 
 	public function test_get_logout_logged_in() {
 		$this->beUser();
 
-		$this->call('GET', URL::route('auth.getLogout'));
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->call('GET', URL::route('auth.logout'));
+		$this->assertRedirectedToRoute('auth.login');
 		$this->assertSessionHas('info');
 	}
 

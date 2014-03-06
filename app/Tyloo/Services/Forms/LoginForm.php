@@ -2,7 +2,7 @@
 
 use Illuminate\Config\Repository;
 
-class RegistrationForm extends AbstractForm
+class LoginForm extends AbstractForm
 {
 
 	/**
@@ -18,18 +18,8 @@ class RegistrationForm extends AbstractForm
 	 * @var array
 	 */
 	protected $rules = [
-		'username'	=> 'required|min:4|alpha_num|unique:users,username',
-		'email'		=> 'required|email|min:5|unique:users',
-		'password'	=> 'required|min:6|confirmed'
-	];
-
-	/**
-	 * Array of custom validation messages.
-	 *
-	 * @var array
-	 */
-	protected $messages = [
-		'not_in' => 'The selected username is reserved, please try a different username.'
+		'username'	=> 'required|min:4|alpha_num',
+		'password'	=> 'required|min:6'
 	];
 
 	/**
@@ -52,11 +42,6 @@ class RegistrationForm extends AbstractForm
 	 */
 	protected function getPreparedRules()
 	{
-		$forbidden = $this->config->get('config.forbidden_usernames');
-		$forbidden = implode(',', $forbidden);
-
-		$this->rules['username'] .= '|not_in:' . $forbidden;
-
 		return $this->rules;
 	}
 
@@ -68,7 +53,7 @@ class RegistrationForm extends AbstractForm
 	public function getInputData()
 	{
 		return array_only($this->inputData, [
-			'username', 'email', 'password', 'password_confirmation'
+			'username', 'password', 'remember'
 		]);
 	}
 

@@ -13,15 +13,15 @@ class UserControllerTest extends TestCase {
 	{
 		$this->beGuest();
 
-		$this->call('GET', URL::route('users.getSettings'));
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->call('GET', URL::route('users.settings'));
+		$this->assertRedirectedToRoute('auth.login');
 	}
 
 	public function test_get_settings_page_user()
 	{
 		$this->beUser();
 
-		$this->call('GET', URL::route('users.getSettings'));
+		$this->call('GET', URL::route('users.settings'));
 		$this->assertResponseOk();
 	}
 
@@ -32,7 +32,7 @@ class UserControllerTest extends TestCase {
 		$this->beUser();
 
 		$this->call('POST', URL::route('users.postSettings'));
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -41,7 +41,7 @@ class UserControllerTest extends TestCase {
 		$this->beUser();
 
 		$this->call('POST', URL::route('users.postSettings'), ['IgnoreCSRFTokenError' => true]);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -54,7 +54,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -67,7 +67,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -82,7 +82,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -97,7 +97,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -110,7 +110,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -123,7 +123,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('errors');
 	}
 
@@ -138,7 +138,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postSettings'), $input);
-		$this->assertRedirectedToRoute('users.getSettings');
+		$this->assertRedirectedToRoute('users.settings');
 		$this->assertSessionHas('success');
 	}
 
@@ -153,15 +153,15 @@ class UserControllerTest extends TestCase {
 	{
 		$this->beGuest();
 
-		$this->call('GET', URL::route('users.getProfile'));
-		$this->assertRedirectedToRoute('auth.getLogin');
+		$this->call('GET', URL::route('users.profile'));
+		$this->assertRedirectedToRoute('auth.login');
 	}
 
 	public function test_get_profile_page_user()
 	{
 		$this->beUser();
 
-		$this->call('GET', URL::route('users.getProfile'));
+		$this->call('GET', URL::route('users.profile'));
 		$this->assertResponseOk();
 	}
 
@@ -172,7 +172,7 @@ class UserControllerTest extends TestCase {
 		$this->beUser();
 
 		$this->call('POST', URL::route('users.postProfile'));
-		$this->assertRedirectedToRoute('users.getProfile');
+		$this->assertRedirectedToRoute('users.profile');
 		$this->assertSessionHas('errors');
 	}
 
@@ -185,7 +185,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postProfile'), $input);
-		$this->assertRedirectedToRoute('users.getProfile');
+		$this->assertRedirectedToRoute('users.profile');
 		$this->assertSessionHas('errors');
 	}
 
@@ -201,7 +201,7 @@ class UserControllerTest extends TestCase {
 		]);
 
 		$this->call('POST', URL::route('users.postProfile'), $input);
-		$this->assertRedirectedToRoute('users.getProfile');
+		$this->assertRedirectedToRoute('users.profile');
 		$this->assertSessionHas('success');
 	}
 

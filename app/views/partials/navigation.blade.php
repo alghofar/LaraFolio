@@ -20,15 +20,15 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				@if(Auth::guest())
-					<li{{ Request::is('register') ? ' class="active"' : '' }}><a href="{{ route('auth.getRegister') }}">Register</a></li>
-					<li{{ Request::is('login') ? ' class="active"' : '' }}><a href="{{ route('auth.getLogin') }}">Login</a></li>
+					<li{{ Request::is('register') ? ' class="active"' : '' }}><a href="{{ route('auth.register') }}">Register</a></li>
+					<li{{ Request::is('login') ? ' class="active"' : '' }}><a href="{{ route('auth.login') }}">Login</a></li>
 				@else
 				<li class="dropdown{{ Request::is('settings') || Request::is('profile') ? ' active' : '' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome back, {{ Auth::user()->username }} <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li{{ Request::is('profile') ? ' class="active"' : '' }}><a href="{{ url('settings')}}">My Profile</a></li>
 						<li{{ Request::is('settings') ? ' class="active"' : '' }}><a href="{{ url('settings')}}">My Settings</a></li>
-						<li><a href="{{ route('auth.getLogout')}}">Logout</a></li>
+						<li><a href="{{ route('auth.logout')}}">Logout</a></li>
 					</ul>
 				</li>
 				@endif

@@ -1,7 +1,6 @@
 <?php namespace Tyloo\Controllers;
 
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
 
@@ -56,7 +55,7 @@ class BaseController extends Controller
 	 * @param  array  $data
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	protected function redirectRoute($route, $params = [], $data = [])
+	protected function redirectRoute($route, $data = [], $params = [])
 	{
 		return Redirect::route($route, $params)->with($data);
 	}
@@ -67,7 +66,7 @@ class BaseController extends Controller
 	 * @param  array $data
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	protected function redirectRouteInput($route, $params = [], $data = [])
+	protected function redirectRouteInput($route, $data = [], $params = [])
 	{
 		return Redirect::route($route, $params)->withInput()->with($data);
 	}
@@ -93,4 +92,5 @@ class BaseController extends Controller
 	{
 		return Redirect::intended($default)->with($data);
 	}
+
 }
