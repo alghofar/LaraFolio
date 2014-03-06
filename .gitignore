@@ -1,7 +1,6 @@
 # Laravel
 /bootstrap/compiled.php
 /vendor
-/app/config/local
 
 # OS
 .DS_Store
