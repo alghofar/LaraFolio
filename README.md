@@ -1,7 +1,8 @@
 # Larafolio - Laravel 4 Portfolio, Blog and CMS
 
 `Version: 1.0.0 Stable`
-[![ProjectStatus](http://stillmaintained.com/Tyloo/LaraFolio.png)](http://stillmaintained.com/Tyloo/LaraFolio) [![Build Status](https://travis-ci.org/Tyloo/LaraFolio.png?branch=master)](https://travis-ci.org/Tyloo/LaraFolio) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Tyloo/larafolio/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+[![Build Status](https://travis-ci.org/Tyloo/LaraFolio.png?branch=master)](https://travis-ci.org/Tyloo/LaraFolio) [![ProjectStatus](http://stillmaintained.com/Tyloo/LaraFolio.png)](http://stillmaintained.com/Tyloo/LaraFolio) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Tyloo/LaraFolio/badges/quality-score.png?s=a0249b1dc879585ed2f702a7e1ef22c45bdc23d5)](https://scrutinizer-ci.com/g/Tyloo/LaraFolio/) [![Code Coverage](https://scrutinizer-ci.com/g/Tyloo/LaraFolio/badges/coverage.png?s=de47a05dbee416ed3cdb11847836238f8f0bb0c1)](https://scrutinizer-ci.com/g/Tyloo/LaraFolio/)
 
 LaraFolio is a sample Application built with the amazing PHP framework Laravel 4. The main purpose is to create a CMS system with a Blog, a Portfolio, an Admin Panel, a Contact page and dynamic Content pages.
 
