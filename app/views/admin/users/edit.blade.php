@@ -6,9 +6,7 @@
 
 		<div class="col-lg-8 col-lg-push-2">
 			{{ Form::model($user, ['route' => ['admin.users.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'role' => 'form']) }}
-				{{ Form::hidden('id') }}
 				@include('admin.users._form', ['submit_button' => trans('buttons.admin.users.edit.submit')])
-				}
 			{{ Form::close() }}
 		</div>
 	</div>

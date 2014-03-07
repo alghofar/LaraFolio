@@ -80,7 +80,7 @@ class AdminUsersUpdateForm extends AbstractForm
 	public function getInputData()
 	{
 		return array_only($this->inputData, [
-			'id', 'username', 'email', 'password', 'password_confirmation', 'first_name', 'last_name', 'location', 'description', 'is_admin'
+			'username', 'email', 'password', 'password_confirmation', 'first_name', 'last_name', 'location', 'description', 'is_admin'
 		]);
 	}
 
