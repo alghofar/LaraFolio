@@ -11,6 +11,10 @@ class AuthController extends BaseController {
 	 */
 	protected $users;
 
+	/**
+	 * Auth Events
+	 * @var \Tyloo\Services\AuthEvents
+	 */
 	protected $authEvent;
 
 	/**
@@ -71,7 +75,7 @@ class AuthController extends BaseController {
 			return $this->redirectRouteInput('auth.login', $this->authEvent->errors());
 		}
 
-		return $this->redirectRoute('home', ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
+		return $this->redirectIntended('/', ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
 	}
 
 	/**
@@ -97,7 +101,7 @@ class AuthController extends BaseController {
 			return $this->redirectRouteInput('auth.login', $this->authEvent->errors());
 		}
 
-		return $this->redirectRoute('auth.login', ['success' => '<p>Your account has been successfully activated!</p>']);
+		return $this->redirectRoute('home', ['success' => '<p>Your account has been successfully activated!</p>']);
 	}
 
 }

@@ -36,7 +36,7 @@ return [
 				'label'			=> 'New Password',
 				'placeholder'	=> 'Please enter your new Password',
 			],
-			'password_confirm' => [
+			'password_confirmation' => [
 				'label'			=> 'Confirm Password',
 				'placeholder'	=> 'Please confirm your Password',
 			],

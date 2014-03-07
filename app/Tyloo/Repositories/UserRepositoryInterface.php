@@ -64,6 +64,23 @@ interface UserRepositoryInterface
 	public function create(array $data);
 
 	/**
+	 * Create a new user in the database.
+	 *
+	 * @param  array  $data
+	 * @return \Tyloo\User
+	 */
+	public function createByAdmin(array $data);
+
+
+	/**
+	 * Update an user in the database.
+	 *
+	 * @param  array  $data
+	 * @return \Tyloo\User
+	 */
+	public function updateByAdmin(User $user, array $data);
+
+	/**
 	 * Update the user's settings.
 	 *
 	 * @param  array $data

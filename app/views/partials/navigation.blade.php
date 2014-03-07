@@ -29,6 +29,9 @@
 						<li{{ Request::is('profile') ? ' class="active"' : '' }}><a href="{{ url('settings')}}">My Profile</a></li>
 						<li{{ Request::is('settings') ? ' class="active"' : '' }}><a href="{{ url('settings')}}">My Settings</a></li>
 						<li><a href="{{ route('auth.logout')}}">Logout</a></li>
+						@if(Auth::check() && ! Auth::user()->isAdmin())
+							<li><a href="#">Admin</a></li>
+						@endif
 					</ul>
 				</li>
 				@endif

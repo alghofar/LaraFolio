@@ -82,3 +82,8 @@ require app_path().'/filters.php';
 
 // Application events
 require app_path().'/observables.php';
+
+Event::listen("illuminate.query", function($query, $bindings, $time, $name){
+    \Log::info($query."\n");
+    \Log::info(json_encode($bindings)."\n");
+});

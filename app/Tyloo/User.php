@@ -33,7 +33,7 @@ class User extends Model implements UserInterface, RemindableInterface
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['email', 'username', 'password', 'first_name', 'last_name', 'location', 'description', 'avatar'];
+	protected $fillable = ['email', 'username', 'password', 'first_name', 'last_name', 'location', 'description', 'avatar', 'is_admin'];
 
 	/**
 	 * Get the unique identifier for the user.

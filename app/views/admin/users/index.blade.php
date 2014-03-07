@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-lg-12"> 
 			<div class="page-header">
-			  <h1>Showing all users ({{Tyloo\User::count()}})<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Add an User</a></h1>
+			  <h1>Showing all users ({{ $users->count() }})<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Add an User</a></h1>
 			</div>
 		</div>
 	</div>

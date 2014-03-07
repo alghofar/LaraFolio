@@ -25,9 +25,9 @@
 					</div>
 				</div>
 				<div class="form-group{{ ($errors->has('password')) ? ' has-error' : '' }}">
-					{{ Form::label('password_confirmation', trans('users.create.form.password_confirm.label'), ['class' => 'col-sm-3 control-label']) }}
+					{{ Form::label('password_confirmation', trans('users.create.form.password_confirmation.label'), ['class' => 'col-sm-3 control-label']) }}
 					<div class="col-sm-9">
-						{{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => trans('users.create.form.password_confirm.placeholder')]) }}
+						{{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => trans('users.create.form.password_confirmation.placeholder')]) }}
 					</div>
 				</div>
 				<div class="form-group">

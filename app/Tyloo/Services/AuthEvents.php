@@ -1,6 +1,7 @@
 <?php namespace Tyloo\Services;
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Auth;
 use Tyloo\Repositories\UserRepositoryInterface;
 
 /**
@@ -53,6 +54,47 @@ class AuthEvents
 		$this->errors = ['errors' => 'An error occured on the user creation process.'];
 		return false;
 	}
+	
+	public function create() {
+		// We populate the form
+		$form = $this->users->getAdminUsersCreateForm();
+
+		// If the entry is not valid, we redirect back with the errors
+		if ( ! $form->isValid()) {
+			$this->errors = ['errors' => $form->getErrors()];
+			return false;
+		}
+
+		// We create the user
+		else if ($user = $this->users->save($form->getData())) {
+			Event::fire('user.mailer.create', [
+				'user_id' => $user['id'],
+				'email' => $user['email'],
+				'password' => $form->getInputData()['password'],
+				'token' => $user['activation_code']
+			]);
+			return true;
+		}
+
+		$this->errors = ['errors' => 'An error occured on the user creation process.'];
+		return false;
+	}
+	
+	public function update($id) {
+		// We populate the form
+		$form = $this->users->getAdminUsersUpdateForm();
+
+		// If the entry is not valid, we redirect back with the errors
+		if ( ! $form->isValid()) {
+			$this->errors = ['errors' => $form->getErrors()];
+			return false;
+		}
+
+		// We update the user
+		$user = $this->users->findById($id);
+		$user->save($form->getData());
+		return true;
+	}
 
 	public function login() {
 		// We populate the form
@@ -89,6 +131,7 @@ class AuthEvents
 			return false;
 		}
 		$this->users->activate($user);
+		Auth::loginUsingId($user_id);
 		return true;
 	}
 

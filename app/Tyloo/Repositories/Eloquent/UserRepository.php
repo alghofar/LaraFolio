@@ -139,11 +139,55 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 		$user->email			= e($data['email']);
 		$user->username			= e($data['username']);
 		$user->password			= Hash::make($data['password']);
-		$user->activation_code	= Hash::make(Config::get('app.key'));
+		$user->activation_code	= str_random(32);
 
 		$user->save();
 
 		return $user;
+	}
+
+	/**
+	 * Create a new user in the database.
+	 *
+	 * @param  array $data
+	 * @return \Tyloo\User
+	 */
+	public function createByAdmin(array $data)
+	{
+		$user = $this->getNew();
+
+		$user->email			= e($data['email']);
+		$user->username			= e($data['username']);
+		$user->password			= Hash::make($data['password']);
+		$user->first_name		= e($data['first_name']);
+		$user->last_name		= e($data['last_name']);
+		$user->location			= e($data['location']);
+		$user->description		= e($data['description']);
+		$user->activation_code	= str_random(32);
+		$user->is_admin			= $data['is_admin'];
+
+		$user->save();
+
+		return $user;
+	}
+
+	/**
+	 * Create a new user in the database.
+	 *
+	 * @param  array $data
+	 * @return \Tyloo\User
+	 */
+	public function updateByAdmin(User $user, array $data)
+	{
+		$user->username			= e($data['username']);
+		$user->password			= Hash::make($data['password']);
+		$user->first_name		= e($data['first_name']);
+		$user->last_name		= e($data['last_name']);
+		$user->location			= e($data['location']);
+		$user->description		= e($data['description']);
+		$user->is_admin			= $data['is_admin'];
+
+		$user->save();
 	}
 
 	/**
@@ -287,6 +331,16 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	public function getProfileForm()
 	{
 		return app('Tyloo\Services\Forms\ProfileForm');
+	}
+
+	/**
+	 * Get the user profile form service.
+	 *
+	 * @return \Tyloo\Services\Forms\Admin\AdminUsersForm
+	 */
+	public function getAdminUsersForm()
+	{
+		return app('Tyloo\Services\Forms\Admin\AdminUsersForm');
 	}
 
 }

@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder {
 				'suspended'			=> 0,
 				'created_at'		=> \Carbon\Carbon::now(),
 				'updated_at'		=> \Carbon\Carbon::now(),
-				'activation_code'	=> Hash::make(Config::get('app.key')),
+				'activation_code'	=> str_random(32),
 				'activated'			=> 1,
 			],
 			[
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder {
 				'suspended'			=> 0,
 				'created_at'		=> \Carbon\Carbon::now(),
 				'updated_at'		=> \Carbon\Carbon::now(),
-				'activation_code'	=> Hash::make(Config::get('app.key')),
+				'activation_code'	=> str_random(32),
 				'activated'			=> 1,
 			],
 			[
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder {
 				'suspended'			=> 1,
 				'created_at'		=> \Carbon\Carbon::now(),
 				'updated_at'		=> \Carbon\Carbon::now(),
-				'activation_code'	=> Hash::make(Config::get('app.key')),
+				'activation_code'	=> str_random(32),
 				'activated'			=> 1,
 			]
 		];

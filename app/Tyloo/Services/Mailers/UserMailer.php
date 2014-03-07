@@ -10,6 +10,7 @@ class UserMailer extends Mailer {
 	public function subscribe ($events)
 	{
 		$events->listen ('user.mailer.register',	'Tyloo\Services\Mailers\UserMailer@welcome');
+		$events->listen ('user.mailer.create',		'Tyloo\Services\Mailers\UserMailer@welcomeByAdmin');
 		$events->listen ('user.mailer.resend',		'Tyloo\Services\Mailers\UserMailer@welcome');
 		$events->listen ('user.mailer.forgot',		'Tyloo\Services\Mailers\UserMailer@forgotPassword');
 		$events->listen ('user.mailer.newpassword',	'Tyloo\Services\Mailers\UserMailer@newPassword');
@@ -28,6 +29,26 @@ class UserMailer extends Mailer {
 		$view = 'emails.auth.welcome';
 		$data['user_id'] = $user_id;
 		$data['email'] = $email;
+		$data['token'] = $token;
+
+		return $this->sendTo($email, $subject, $view, $data);
+	}
+
+	/**
+	 * Send a welcome email to a new user created by an admin.
+	 * @param	string	$email
+	 * @param	string	$password
+	 * @param	int		$userId
+	 * @param	string	$activationCode
+	 * @return	bool
+	 */
+	public function welcomeByAdmin($user_id, $email, $password, $token)
+	{
+		$subject = trans('emails.welcome_title', ['website_name' => trans('pages.website_title')]);
+		$view = 'emails.auth.welcomeByAdmin';
+		$data['user_id'] = $user_id;
+		$data['email'] = $email;
+		$data['password'] = $password;
 		$data['token'] = $token;
 
 		return $this->sendTo($email, $subject, $view, $data);

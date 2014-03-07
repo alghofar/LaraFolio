@@ -1,9 +1,9 @@
 <?php namespace Tyloo\Controllers\Admin;
 
-use Tyloo\Controllers\BaseController;
 use Tyloo\Repositories\UserRepositoryInterface;
+use Tyloo\Services\AuthEvents;
 
-class UsersController extends BaseController
+class UsersController extends AdminController
 {
 
 	/**
@@ -13,17 +13,25 @@ class UsersController extends BaseController
      */
     protected $users;
 
+
+	/**
+	 * Auth Events
+	 * @var \Tyloo\Services\AuthEvents
+	 */
+	protected $authEvent;
+
     /**
      * Create a new UsersController instance.
      *
      * @param  \Tricks\Repositories\UserRepositoryInterface $users
      * @return Tyloo
      */
-    public function __construct(UserRepositoryInterface $users)
+    public function __construct(UserRepositoryInterface $users, AuthEvents $authEvent)
     {
         parent::__construct();
 
         $this->users = $users;
+        $this->authEvent = $authEvent;
     }
 
 	/**
@@ -55,7 +63,11 @@ class UsersController extends BaseController
 	 */
 	public function store()
 	{
-		dd(\Input::all());
+		if ( ! $this->authEvent->create()) {
+			return $this->redirectRouteInput('admin.users.create', $this->authEvent->errors());
+		}
+
+		return $this->redirectRoute('admin.users.index', ['success' => '<p>User added successfully!</p>']);
 	}
 
 	/**
@@ -78,7 +90,11 @@ class UsersController extends BaseController
 	 */
 	public function update($id)
 	{
-		dd(\Input::all());
+		if ( ! $this->authEvent->update($id)) {
+			return $this->redirectRouteInput('admin.users.edit', $this->authEvent->errors(), ['id' => $id]);
+		}
+
+		return $this->redirectRoute('admin.users.index', ['success' => '<p>User added successfully!</p>']);
 	}
 
 	/**
