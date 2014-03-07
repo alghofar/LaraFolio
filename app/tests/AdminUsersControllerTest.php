@@ -16,4 +16,13 @@ class AdminUsersControllerTest extends TestCase {
 		$this->call('GET', route('admin.users.index'));
 		$this->assertResponseOk();
 	}
+
+	// GET /admin/users/create
+	public function test_get_admin_users_create_page()
+	{
+		$this->beAdmin();
+
+		$this->call('GET', route('admin.users.create'));
+		$this->assertResponseOk();
+	}
 }
