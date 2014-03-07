@@ -5,12 +5,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Auth;
 use Tyloo\Repositories\UserRepositoryInterface;
+use Tyloo\Exceptions\AdminUsersUserNotFoundException;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
 
 	/**
-	 * Create a new DbUserRepository instance.
+	 * Create a new UserRepository instance.
 	 *
 	 * @param  \Tyloo\User  $user
 	 * @return void
@@ -26,11 +27,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	 * @param  int  $perPage
 	 * @return Illuminate\Database\Eloquent\Collection|\Tyloo\User[]
 	 */
-	public function findAllPaginated($perPage = 200)
+	public function findAllPaginated($perPage = 25)
 	{
-		return $this->model
-					->orderBy('created_at', 'desc')
-					->paginate($perPage);
+		return $this->model->orderBy('created_at', 'desc')->paginate($perPage);
 	}
 
 	/**
@@ -41,7 +40,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	 */
 	public function findById($id)
 	{
-		return $this->model->find($id);
+		if (! is_null($user = $this->model->find($id)))
+			return $user;
+
+		throw new AdminUsersUserNotFoundException('<p>The user with id of "' . $id . '" does not exist!<p>');
 	}
 
 	/**
@@ -75,22 +77,6 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	public function findByEmailOrUsername($user)
 	{
 		return $this->model->where('username', '=', $user)->orWhere('email', '=', $user)->first();
-	}
-
-	/**
-	 * Require a user by it's username.
-	 *
-	 * @param  string $username
-	 * @return \Tyloo\User
-	 * @throws \Tyloo\Exceptions\UserNotFoundException
-	 */
-	public function requireByUsername($username)
-	{
-		if (! is_null($user = $this->findByUsername($username))) {
-			return $user;
-		}
-
-		throw new UserNotFoundException('The user "' . $username . '" does not exist!');
 	}
 
 	public function checkValidForLogin($credentials) {
@@ -334,13 +320,23 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 	}
 
 	/**
-	 * Get the user profile form service.
+	 * Get the user creation by admin form service.
 	 *
-	 * @return \Tyloo\Services\Forms\Admin\AdminUsersForm
+	 * @return \Tyloo\Services\Forms\Admin\AdminUsersCreateForm
 	 */
-	public function getAdminUsersForm()
+	public function getAdminUsersCreateForm()
 	{
-		return app('Tyloo\Services\Forms\Admin\AdminUsersForm');
+		return app('Tyloo\Services\Forms\Admin\AdminUsersCreateForm');
+	}
+
+	/**
+	 * Get the user update by admin form service.
+	 *
+	 * @return \Tyloo\Services\Forms\Admin\AdminUsersUpdateForm
+	 */
+	public function getAdminUsersUpdateForm()
+	{
+		return app('Tyloo\Services\Forms\Admin\AdminUsersUpdateForm');
 	}
 
 }

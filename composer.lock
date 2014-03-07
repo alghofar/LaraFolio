@@ -1713,16 +1713,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v1.4.1",
+            "version": "v1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "3e0d77fbc4845ef36468050301fd29e07506b3a7"
+                "reference": "01a4c02709edcde3826873b675ce93ecada11199"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/3e0d77fbc4845ef36468050301fd29e07506b3a7",
-                "reference": "3e0d77fbc4845ef36468050301fd29e07506b3a7",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/01a4c02709edcde3826873b675ce93ecada11199",
+                "reference": "01a4c02709edcde3826873b675ce93ecada11199",
                 "shasum": ""
             },
             "require": {
@@ -1756,7 +1756,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2014-03-05 07:25:51"
+            "time": "2014-03-05 16:23:37"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2396,12 +2396,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "6a6fc18508e270cd5a5acaee7492e4e4a303fce6"
+                "reference": "a32c6ad986c061b40636b7da4fe30adc2a7451b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6a6fc18508e270cd5a5acaee7492e4e4a303fce6",
-                "reference": "6a6fc18508e270cd5a5acaee7492e4e4a303fce6",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/a32c6ad986c061b40636b7da4fe30adc2a7451b5",
+                "reference": "a32c6ad986c061b40636b7da4fe30adc2a7451b5",
                 "shasum": ""
             },
             "require": {
@@ -2454,7 +2454,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-02-26 10:59:49"
+            "time": "2014-03-05 22:17:02"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2606,12 +2606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/JeffreyWay/Laravel-4-Generators.git",
-                "reference": "24a3b3c9953dc8cff62e869fe4e4c152dd57e369"
+                "reference": "f0149677968893333b416afa48b6d5f804a7bc35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JeffreyWay/Laravel-4-Generators/zipball/24a3b3c9953dc8cff62e869fe4e4c152dd57e369",
-                "reference": "24a3b3c9953dc8cff62e869fe4e4c152dd57e369",
+                "url": "https://api.github.com/repos/JeffreyWay/Laravel-4-Generators/zipball/f0149677968893333b416afa48b6d5f804a7bc35",
+                "reference": "f0149677968893333b416afa48b6d5f804a7bc35",
                 "shasum": ""
             },
             "require": {
@@ -2634,6 +2634,9 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Jeffrey Way",
@@ -2642,7 +2645,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-03-05 00:41:14"
+            "time": "2014-03-06 14:37:24"
         }
     ],
     "aliases": [

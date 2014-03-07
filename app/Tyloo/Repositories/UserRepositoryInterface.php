@@ -46,16 +46,6 @@ interface UserRepositoryInterface
 	public function findByEmailOrUsername($user);
 
 	/**
-	 * Require a user by it's username.
-	 *
-	 * @param  string $username
-	 * @return \Tyloo\User
-	 *
-	 * @throws \Tyloo\Exceptions\UserNotFoundException
-	 */
-	public function requireByUsername($username);
-
-	/**
 	 * Create a new user in the database.
 	 *
 	 * @param  array  $data
