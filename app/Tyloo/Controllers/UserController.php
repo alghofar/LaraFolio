@@ -1,6 +1,5 @@
 <?php namespace Tyloo\Controllers;
 
-//use ImageUpload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Tyloo\Repositories\UserRepositoryInterface;
