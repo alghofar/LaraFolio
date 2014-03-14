@@ -33,9 +33,9 @@ return [
 
         'error' => [
 
-            'login_failed'      => '<p>The Email or password provided was incorrect, please try again.</p>'
+            'login_failed'      => '<p>The Email or password provided was incorrect, please try again.</p>',
             'account_suspended' => '<p>Impossible to log you in, cupcake! Your account has been suspended.</p>',
-            'not_activated'     => '<p>Impossible to log you in, cupcake! Your account has not been activated, yet.</p>'
+            'not_activated'     => '<p>Impossible to log you in, cupcake! Your account has not been activated, yet.</p>',
 
         ],
 
@@ -49,7 +49,7 @@ return [
 
             'logout'    => '<p>You were successfully logged out! See you soon!</p>',
 
-        ]
+        ],
 
     ],
 
