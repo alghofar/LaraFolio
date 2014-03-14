@@ -2,18 +2,18 @@
 
 return [
 
-	'default' => 'sqlite',
+    'default' => 'sqlite',
 
-	'connections' => [
+    'connections' => [
 
-		'sqlite' => [
+        'sqlite' => [
 
-			'driver'	=> 'sqlite',
-			'database'	=> ':memory:',
-			'prefix'	=> '',
+            'driver'	=> 'sqlite',
+            'database'	=> ':memory:',
+            'prefix'	=> '',
 
-		],
+        ],
 
-	],
+    ],
 
 ];

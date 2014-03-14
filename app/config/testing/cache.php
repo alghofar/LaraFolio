@@ -2,6 +2,6 @@
 
 return [
 
-	'driver' => 'array',
+    'driver' => 'array',
 
 ];

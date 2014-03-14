@@ -1,19 +1,19 @@
 <?php
 
-class HomeControllerTest extends TestCase {
+class HomeControllerTest extends TestCase
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Home Page Tests
+    |--------------------------------------------------------------------------
+    */
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Page Tests
-	|--------------------------------------------------------------------------
-	*/
+    // GET /
+    public function testHomeControllerIndexPage()
+    {
+        $this->call('GET', '/');
 
-	// GET /
-	public function testHomeControllerIndexPage()
-	{
-		$this->call('GET', '/');
-
-		$this->assertResponseOk();
-	}
+        $this->assertResponseOk();
+    }
 
 }

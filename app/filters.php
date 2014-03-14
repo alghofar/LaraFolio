@@ -11,15 +11,12 @@
 |
 */
 
-App::before(function($request)
-{
-	//
+App::before(function ($request) {
+    //
 });
 
-
-App::after(function($request, $response)
-{
-	//
+App::after(function ($request, $response) {
+    //
 });
 
 /*
@@ -35,24 +32,21 @@ App::after(function($request, $response)
 
 Route::filter('admin', function () {
 
-	if (Auth::guest()) {
-		return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
-	}
-	else if (Auth::check() && ! Auth::user()->isAdmin()) {
-		return Redirect::home()->withError('<p>You must be an Administrator to access this page.</p>');
-	}
+    if (Auth::guest()) {
+        return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
+    } elseif (Auth::check() && ! Auth::user()->isAdmin()) {
+        return Redirect::home()->withError('<p>You must be an Administrator to access this page.</p>');
+    }
 });
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) {
-		return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
-	}
+Route::filter('auth', function () {
+    if (Auth::guest()) {
+        return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
+    }
 });
 
-Route::filter('auth.basic', function()
-{
-	return Auth::basic();
+Route::filter('auth.basic', function () {
+    return Auth::basic();
 });
 
 /*
@@ -66,11 +60,10 @@ Route::filter('auth.basic', function()
 |
 */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) {
-		return Redirect::route('users.profile');
-	}
+Route::filter('guest', function () {
+    if (Auth::check()) {
+        return Redirect::route('users.profile');
+    }
 });
 
 /*
@@ -84,25 +77,21 @@ Route::filter('guest', function()
 |
 */
 
-Route::filter('csrf', function()
-{
-	if (Session::token() !== Input::get('_token') || Session::token() === null || Input::get('_token') === null)
-	{
-		// Session token and form tokens do not match or one is empty
-		if (App::environment() === 'testing')
-		{
-			// We only want to allow CSRF override if we're running tests
-			if (Input::get('IgnoreCSRFTokenError') === true) 
-			{
-				// Allow CSRF override in testing environment
-				return;
-			} else {
-				// Handle CSRF normally
-				throw new Illuminate\Session\TokenMismatchException;
-			}	
-		} else {
-			// Handle CSRF normally
-			throw new Illuminate\Session\TokenMismatchException;
-		}
-	}
+Route::filter('csrf', function () {
+    if (Session::token() !== Input::get('_token') || Session::token() === null || Input::get('_token') === null) {
+        // Session token and form tokens do not match or one is empty
+        if (App::environment() === 'testing') {
+            // We only want to allow CSRF override if we're running tests
+            if (Input::get('IgnoreCSRFTokenError') === true) {
+                // Allow CSRF override in testing environment
+                return;
+            } else {
+                // Handle CSRF normally
+                throw new Illuminate\Session\TokenMismatchException;
+            }
+        } else {
+            // Handle CSRF normally
+            throw new Illuminate\Session\TokenMismatchException;
+        }
+    }
 });
