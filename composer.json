@@ -6,7 +6,7 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"thomaswelton/laravel-gravatar": "0.0.*",
-		"mccool/laravel-auto-presenter": "dev-master"
+		"mccool/laravel-auto-presenter": "1.*"
 	},
 	"require-dev": {
 		"way/generators": "dev-master",
