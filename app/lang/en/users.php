@@ -40,7 +40,7 @@ return [
                 'label'			=> 'Confirm Password',
                 'placeholder'	=> 'Please confirm your Password',
             ],
-        ]
-    ]
+        ],
+    ],
 
 ];

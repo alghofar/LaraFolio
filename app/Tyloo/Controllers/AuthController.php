@@ -51,7 +51,7 @@ class AuthController extends BaseController
             return $this->redirectRouteInput('auth.register', $this->authEvent->errors());
         }
 
-        return $this->redirectRoute('home', ['success' => '<h4>Welcome to LaraFolio!</h4><p>To complete your registration, enter the code from the email we just sent you!</p>']);
+        return $this->redirectRoute('home', ['success' => trans('messages.auth.success.register')]);
     }
 
     /**
@@ -75,7 +75,7 @@ class AuthController extends BaseController
             return $this->redirectRouteInput('auth.login', $this->authEvent->errors());
         }
 
-        return $this->redirectIntended('/', ['success' => '<p>You were successfully logged in! Enjoy the trip!</p>']);
+        return $this->redirectIntended('/', ['success' => trans('messages.auth.success.login')]);
     }
 
     /**
@@ -87,7 +87,7 @@ class AuthController extends BaseController
     {
         $this->authEvent->logout();
 
-        return $this->redirectRoute('auth.login', ['info' => '<p>You were successfully logged out! See you soon!</p>']);
+        return $this->redirectRoute('auth.login', ['info' => trans('messages.auth.info.logout')]);
     }
 
     /**
@@ -101,7 +101,7 @@ class AuthController extends BaseController
             return $this->redirectRouteInput('auth.login', $this->authEvent->errors());
         }
 
-        return $this->redirectRoute('home', ['success' => '<p>Your account has been successfully activated!</p>']);
+        return $this->redirectRoute('home', ['success' => trans('messages.auth.success.activate')]);
     }
 
 }

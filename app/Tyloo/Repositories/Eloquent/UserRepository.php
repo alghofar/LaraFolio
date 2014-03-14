@@ -43,7 +43,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         if (! is_null($user = $this->model->find($id)))
             return $user;
 
-        throw new AdminUsersUserNotFoundException('<p>The user with id of "' . $id . '" does not exist!<p>');
+        throw new AdminUsersUserNotFoundException(trans('messages.users.error.user_not_exists_with_id', compact('id')));
     }
 
     /**
@@ -85,9 +85,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $user = $this->findByEmailOrUsername($credentials['username']);
         if (! empty($credentials['username']) && $user != null) {
             if ($user->suspended == true) {
-                return ['error' => '<p>Impossible to log you in, cupcake! Your account has been suspended.</p>'];
+                return ['error' => trans('messages.auth.error.account_suspended')];
             } elseif ($user->activated == false) {
-                return ['error' => '<p>Impossible to log you in, cupcake! Your account has not been activated, yet.</p>'];
+                return ['error' => trans('messages.auth.error.not_activated')];
             }
         }
 

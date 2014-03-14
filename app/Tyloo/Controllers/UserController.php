@@ -66,7 +66,7 @@ class UserController extends BaseController
         $this->users->updateSettings($this->user, Input::all());
 
         // We redirect to the profile page
-        return $this->redirectRoute('users.settings', ['success' => '<p>Your Settings have been updated!</p>']);
+        return $this->redirectRoute('users.settings', ['success' => trans('messages.users.success.settings_updated')]);
     }
 
     /**
@@ -100,7 +100,7 @@ class UserController extends BaseController
         $this->users->updateProfile($this->user, Input::all());
 
         // We redirect to the profile page
-        return $this->redirectRoute('users.profile', ['success' => '<p>Your Profile have been updated!</p>']);
+        return $this->redirectRoute('users.profile', ['success' => trans('messages.users.success.profile_updated')]);
     }
 
     /**

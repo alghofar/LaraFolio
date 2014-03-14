@@ -33,15 +33,15 @@ App::after(function ($request, $response) {
 Route::filter('admin', function () {
 
     if (Auth::guest()) {
-        return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
+        return Redirect::guest('login')->withError(trans('users.alerts.error.must_be_authenticated'));
     } elseif (Auth::check() && ! Auth::user()->isAdmin()) {
-        return Redirect::home()->withError('<p>You must be an Administrator to access this page.</p>');
+        return Redirect::home()->withError(trans('users.alerts.error.must_be_admin'));
     }
 });
 
 Route::filter('auth', function () {
     if (Auth::guest()) {
-        return Redirect::guest('login')->withError('<p>You must be authentified to access this page.</p>');
+        return Redirect::guest('login')->withError(trans('users.alerts.error.must_be_authenticated'));
     }
 });
 

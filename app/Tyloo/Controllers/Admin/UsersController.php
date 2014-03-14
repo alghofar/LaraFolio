@@ -66,7 +66,7 @@ class UsersController extends AdminController
             return $this->redirectRouteInput('admin.users.create', $this->authEvent->errors());
         }
 
-        return $this->redirectRoute('admin.users.index', ['success' => '<p>User added successfully!</p>']);
+        return $this->redirectRoute('admin.users.index', ['success' => trans('messages.users.success.created')]);
     }
 
     /**
@@ -94,7 +94,7 @@ class UsersController extends AdminController
             return $this->redirectRouteInput('admin.users.edit', $this->authEvent->errors(), ['id' => $id]);
         }
 
-        return $this->redirectRoute('admin.users.index', ['success' => '<p>User added successfully!</p>']);
+        return $this->redirectRoute('admin.users.index', ['success' => trans('messages.users.success.updated')]);
     }
 
     /**
@@ -108,7 +108,7 @@ class UsersController extends AdminController
         $user = $this->users->findById($id);
         $this->users->delete($user);
 
-        return $this->redirectRoute('admin.users.index', ['success' => '<p>User \'' . $user->username . '\' deleted successfully!']);
+        return $this->redirectRoute('admin.users.index', ['success' => trans('messages.users.success.deleted')]);
     }
 
     /**
@@ -121,7 +121,7 @@ class UsersController extends AdminController
         $user = $this->users->findById($id);
         $this->users->suspend($user);
 
-        return $this->redirectRoute('admin.users.index', ['success' => '<p>User \'' . $user->username . '\' suspended successfully!']);
+        return $this->redirectRoute('admin.users.index', ['success' => trans('messages.users.success.suspended')]);
     }
 
     /**
@@ -134,7 +134,7 @@ class UsersController extends AdminController
         $user = $this->users->findById($id);
         $this->users->restore($user);
 
-        return $this->redirectRoute('admin.users.index', ['success' => '<p>User \'' . $user->username . '\' restored successfully!']);
+        return $this->redirectRoute('admin.users.index', ['success' => trans('messages.users.success.restored')]);
     }
 
 }

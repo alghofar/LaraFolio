@@ -54,7 +54,7 @@ class AuthEvents
             return true;
         }
 
-        $this->errors = ['errors' => 'An error occured on the user creation process.'];
+        $this->errors = ['errors' => trans('messages.users.error.register_failed')];
 
         return false;
     }
@@ -83,7 +83,7 @@ class AuthEvents
             return true;
         }
 
-        $this->errors = ['errors' => 'An error occured on the user creation process.'];
+        $this->errors = ['errors' => trans('messages.users.error.register_failed')];
 
         return false;
     }
@@ -114,7 +114,7 @@ class AuthEvents
 
         // If the entry is not valid, we redirect back with the errors
         if ( ! $form->isValid()) {
-            $this->errors = ['error' => '<h5>E-mail or password was incorrect, please try again</h5>'];
+            $this->errors = ['error' => trans('messages.auth.error.login_failed')];
 
             return false;
         }
@@ -139,11 +139,11 @@ class AuthEvents
     {
         $user = $this->users->findById($user_id);
         if ($user->activated) {
-            $this->errors = ['error' => '<p>You have already activated your account. Please log in with your credentials.'];
+            $this->errors = ['error' => trans('messages.users.error.already_activated')];
 
             return false;
         } elseif ($user->activation_code != $token) {
-            $this->errors = ['error' => '<p>The activation you provided doesn\'t match with our database.'];
+            $this->errors = ['error' => trans('messages.users.error.activation_failed')];
 
             return false;
         }
