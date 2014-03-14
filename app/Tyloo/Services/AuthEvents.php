@@ -10,133 +10,152 @@ use Tyloo\Repositories\UserRepositoryInterface;
 class AuthEvents
 {
 
-	/**
-	 * User Repository.
-	 *
-	 * @var \Tyloo\Repositories\UserRepositoryInterface
-	 */
-	protected $users;
+    /**
+     * User Repository.
+     *
+     * @var \Tyloo\Repositories\UserRepositoryInterface
+     */
+    protected $users;
 
-	protected $errors;
+    protected $errors;
 
-	/**
-	 * Create a new AuthController instance.
-	 *
-	 * @param  \Tyloo\Repositories\UserRepositoryInterface $users
-	 * @return void
-	 */
-	public function __construct(UserRepositoryInterface $users)
-	{
+    /**
+     * Create a new AuthController instance.
+     *
+     * @param  \Tyloo\Repositories\UserRepositoryInterface $users
+     * @return void
+     */
+    public function __construct(UserRepositoryInterface $users)
+    {
 
-		$this->users = $users;
-	}
-	
-	public function register() {
-		// We populate the form
-		$form = $this->users->getRegistrationForm();
+        $this->users = $users;
+    }
 
-		// If the entry is not valid, we redirect back with the errors
-		if ( ! $form->isValid()) {
-			$this->errors = ['errors' => $form->getErrors()];
-			return false;
-		}
+    public function register()
+    {
+        // We populate the form
+        $form = $this->users->getRegistrationForm();
 
-		// We create the user
-		else if ($user = $this->users->create($form->getInputData())) {
-			Event::fire('user.mailer.register', [
-				'user_id' => $user['id'], 
-				'email' => $user['email'], 
-				'token' => $user['activation_code']
-			]);
-			return true;
-		}
+        // If the entry is not valid, we redirect back with the errors
+        if ( ! $form->isValid()) {
+            $this->errors = ['errors' => $form->getErrors()];
 
-		$this->errors = ['errors' => 'An error occured on the user creation process.'];
-		return false;
-	}
-	
-	public function create() {
-		// We populate the form
-		$form = $this->users->getAdminUsersCreateForm();
+            return false;
+        }
 
-		// If the entry is not valid, we redirect back with the errors
-		if ( ! $form->isValid()) {
-			$this->errors = ['errors' => $form->getErrors()];
-			return false;
-		}
+        // We create the user
+        else if ($user = $this->users->create($form->getInputData())) {
+            Event::fire('user.mailer.register', [
+                'user_id' => $user['id'],
+                'email' => $user['email'],
+                'token' => $user['activation_code']
+            ]);
 
-		// We create the user
-		else if ($user = $this->users->save($form->getData())) {
-			Event::fire('user.mailer.create', [
-				'user_id' => $user['id'],
-				'email' => $user['email'],
-				'password' => $form->getInputData()['password'],
-				'token' => $user['activation_code']
-			]);
-			return true;
-		}
+            return true;
+        }
 
-		$this->errors = ['errors' => 'An error occured on the user creation process.'];
-		return false;
-	}
-	
-	public function update($id) {
-		// We populate the form
-		$form = $this->users->getAdminUsersUpdateForm();
+        $this->errors = ['errors' => 'An error occured on the user creation process.'];
 
-		// If the entry is not valid, we redirect back with the errors
-		if ( ! $form->isValid()) {
-			$this->errors = ['errors' => $form->getErrors()];
-			return false;
-		}
+        return false;
+    }
 
-		// We update the user
-		$user = $this->users->findById($id);
-		$user->save($form->getData());
-		return true;
-	}
+    public function create()
+    {
+        // We populate the form
+        $form = $this->users->getAdminUsersCreateForm();
 
-	public function login() {
-		// We populate the form
-		$form = $this->users->getLoginForm();
+        // If the entry is not valid, we redirect back with the errors
+        if ( ! $form->isValid()) {
+            $this->errors = ['errors' => $form->getErrors()];
 
-		// If the entry is not valid, we redirect back with the errors
-		if ( ! $form->isValid()) {
-			$this->errors = ['error' => '<h5>E-mail or password was incorrect, please try again</h5>'];
-			return false;
-		}
+            return false;
+        }
 
-		// We log the user in
-		$login_attempt = $this->users->checkValidForLogin($form->getInputData());
-		if ($login_attempt !== false) {
-			$this->errors = $login_attempt;
-			return false;
-		}
+        // We create the user
+        else if ($user = $this->users->save($form->getData())) {
+            Event::fire('user.mailer.create', [
+                'user_id' => $user['id'],
+                'email' => $user['email'],
+                'password' => $form->getInputData()['password'],
+                'token' => $user['activation_code']
+            ]);
 
-		return true;
-	}
+            return true;
+        }
 
-	public function logout() {
-		$this->users->logout();
-	}
+        $this->errors = ['errors' => 'An error occured on the user creation process.'];
 
-	public function activate($user_id, $token) {
-		$user = $this->users->findById($user_id);
-		if ($user->activated) {
-			$this->errors = ['error' => '<p>You have already activated your account. Please log in with your credentials.'];
-			return false;
-		}
-		else if ($user->activation_code != $token) {
-			$this->errors = ['error' => '<p>The activation you provided doesn\'t match with our database.'];
-			return false;
-		}
-		$this->users->activate($user);
-		Auth::loginUsingId($user_id);
-		return true;
-	}
+        return false;
+    }
 
-	public function errors() {
-		return $this->errors;
-	}
+    public function update($id)
+    {
+        // We populate the form
+        $form = $this->users->getAdminUsersUpdateForm();
+
+        // If the entry is not valid, we redirect back with the errors
+        if ( ! $form->isValid()) {
+            $this->errors = ['errors' => $form->getErrors()];
+
+            return false;
+        }
+
+        // We update the user
+        $user = $this->users->findById($id);
+        $user->save($form->getData());
+
+        return true;
+    }
+
+    public function login()
+    {
+        // We populate the form
+        $form = $this->users->getLoginForm();
+
+        // If the entry is not valid, we redirect back with the errors
+        if ( ! $form->isValid()) {
+            $this->errors = ['error' => '<h5>E-mail or password was incorrect, please try again</h5>'];
+
+            return false;
+        }
+
+        // We log the user in
+        $login_attempt = $this->users->checkValidForLogin($form->getInputData());
+        if ($login_attempt !== false) {
+            $this->errors = $login_attempt;
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public function logout()
+    {
+        $this->users->logout();
+    }
+
+    public function activate($user_id, $token)
+    {
+        $user = $this->users->findById($user_id);
+        if ($user->activated) {
+            $this->errors = ['error' => '<p>You have already activated your account. Please log in with your credentials.'];
+
+            return false;
+        } elseif ($user->activation_code != $token) {
+            $this->errors = ['error' => '<p>The activation you provided doesn\'t match with our database.'];
+
+            return false;
+        }
+        $this->users->activate($user);
+        Auth::loginUsingId($user_id);
+
+        return true;
+    }
+
+    public function errors()
+    {
+        return $this->errors;
+    }
 
 }

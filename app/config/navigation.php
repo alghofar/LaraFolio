@@ -2,25 +2,25 @@
 
 return [
 
-	/*
-	|--------------------------------------------------------------------------
-	| Navigation
-	|--------------------------------------------------------------------------
-	|
-	| Defining menu structure here.
-	| The items that need to appear when user is logged in should have
-	| logged_in set as true.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Navigation
+    |--------------------------------------------------------------------------
+    |
+    | Defining menu structure here.
+    | The items that need to appear when user is logged in should have
+    | logged_in set as true.
+    |
+    */
 
-	'menu' => [
+    'menu' => [
 
-		[
-			'label' => 'Home',
-			'route' => 'home',
-			'active' => ['/'],
-		],
+        [
+            'label' => 'Home',
+            'route' => 'home',
+            'active' => ['/'],
+        ],
 
-	],
+    ],
 
 ];
