@@ -1,8 +1,16 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "Tyloo/LaraFolio",
+	"description": "LaraFolio is a sample Application built with the amazing PHP framework Laravel 4. The main purpose is to create a CMS system with a Blog, a Portfolio, an Admin Panel, a Contact page and dynamic Content pages.",
+	"keywords": ["cms", "portfolio", "blog", "laravel-based"],
 	"license": "MIT",
+	"authors": [
+        {
+            "name": "Julien Bonvarlet",
+            "email": "jbonva@gmail.com",
+            "homepage": "http://www.tyloo.fr/",
+            "role": "Developer"
+        }
+    ],
 	"require": {
 		"laravel/framework": "4.1.*",
 		"thomaswelton/laravel-gravatar": "0.0.*",
