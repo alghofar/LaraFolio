@@ -22,7 +22,7 @@ class UserPresenter extends BasePresenter
 	 *
 	 * @return string
 	 */
-	public function created_at()
+	public function createdAt()
 	{
 		return $this->resource->created_at->diffForHumans();
 	}

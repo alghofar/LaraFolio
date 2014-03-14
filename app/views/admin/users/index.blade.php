@@ -35,7 +35,7 @@
 				       	<td>{{ $user->location }}</td>
 				       	<td>{{ $user->group }}</td>
 				       	<td>{{ $user->isSuspended }}</td>
-				       	<td>{{ $user->created_at }}</td>
+				       	<td>{{ $user->createdAt }}</td>
 				       	<td>
 				       		<a href="{{ URL::route('admin.users.edit', $user->id) }}" class="btn btn-primary btn-xs">Edit</a>
 				       		@if($user->suspended == 0)

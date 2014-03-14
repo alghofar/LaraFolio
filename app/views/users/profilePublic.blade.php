@@ -30,7 +30,7 @@
 						<td>{{ $user->description }}</td>
 						<td>{{ $user->group }}</td>
 						<td>{{ $user->suspended }}</td>
-						<td>{{ $user->created_at }}</td>
+						<td>{{ $user->createdAt }}</td>
 					 </tr>
 				</tbody>
 			</table>
