@@ -54,7 +54,6 @@ class UserPresenter extends BasePresenter
 	 */
 	public function fullName()
 	{
-		$fullName = null;
 		if (! empty($this->resource->first_name) && ! empty($this->resource->last_name)) {
 			return $this->resource->first_name . ' ' . $this->resource->last_name;
 		}
