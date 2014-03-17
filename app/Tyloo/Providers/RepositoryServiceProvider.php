@@ -17,10 +17,10 @@ class RepositoryServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bind(
-			'Tyloo\Repositories\UserRepositoryInterface',
-			'Tyloo\Repositories\Eloquent\UserRepository'
-		);
+		/**
+		 * User Repository binding with the Interface (Eloquent)
+		 */
+		$this->app->bind('Tyloo\Repositories\UserRepositoryInterface', 'Tyloo\Repositories\Eloquent\UserRepository');
 
 		/**
 		 * User Mailer Services
