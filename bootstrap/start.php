@@ -26,8 +26,8 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	// Add your local hostname here
-	'local' => array('vaprobash'),
+    // Add your local hostname here
+    'local' => array('larafolio'),
 
 ));
 

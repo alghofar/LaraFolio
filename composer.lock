@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9cd875e6b4852e87049e4d49746c2e78",
+    "hash": "a4b80b918ab2b8164e52bdf29384f8d5",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -343,16 +343,16 @@
         },
         {
             "name": "mccool/laravel-auto-presenter",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ShawnMcCool/laravel-auto-presenter.git",
-                "reference": "76d0298584e85a421f350b13b16d48f8ae74a19e"
+                "reference": "43fe9cafebacf544a991dd2ac1b4506557e9ab51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ShawnMcCool/laravel-auto-presenter/zipball/76d0298584e85a421f350b13b16d48f8ae74a19e",
-                "reference": "76d0298584e85a421f350b13b16d48f8ae74a19e",
+                "url": "https://api.github.com/repos/ShawnMcCool/laravel-auto-presenter/zipball/43fe9cafebacf544a991dd2ac1b4506557e9ab51",
+                "reference": "43fe9cafebacf544a991dd2ac1b4506557e9ab51",
                 "shasum": ""
             },
             "require": {
@@ -388,7 +388,7 @@
                 "lpm",
                 "presenter"
             ],
-            "time": "2013-12-18 15:01:51"
+            "time": "2013-09-10 13:24:32"
         },
         {
             "name": "monolog/monolog",
@@ -2606,16 +2606,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/JeffreyWay/Laravel-4-Generators.git",
-                "reference": "f0149677968893333b416afa48b6d5f804a7bc35"
+                "reference": "b3c2974a87891ddf48bae27b1d5176168016ef94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JeffreyWay/Laravel-4-Generators/zipball/f0149677968893333b416afa48b6d5f804a7bc35",
-                "reference": "f0149677968893333b416afa48b6d5f804a7bc35",
+                "url": "https://api.github.com/repos/JeffreyWay/Laravel-4-Generators/zipball/b3c2974a87891ddf48bae27b1d5176168016ef94",
+                "reference": "b3c2974a87891ddf48bae27b1d5176168016ef94",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "4.1.*",
+                "illuminate/support": "~4.1",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -2645,7 +2645,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-03-06 14:37:24"
+            "time": "2014-03-13 17:48:09"
         }
     ],
     "aliases": [
@@ -2653,7 +2653,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "mccool/laravel-auto-presenter": 20,
         "way/generators": 20,
         "mockery/mockery": 20
     },

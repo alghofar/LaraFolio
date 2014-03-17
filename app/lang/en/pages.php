@@ -1,27 +1,27 @@
 <?php
 
 return [
-	
-	'home' => [
-		'title'			=> 'Home',
-		'description'	=> 'Home description',
-	],
 
-	'about' => [
-		'title'			=> 'About',
-		'description'	=> 'About description',
-	],
+    'home' => [
+        'title'			=> 'Home',
+        'description'	=> 'Home description',
+    ],
 
-	'contact' => [
-		'title'			=> 'Contact',
-		'description'	=> 'Contact description',
-	],
+    'about' => [
+        'title'			=> 'About',
+        'description'	=> 'About description',
+    ],
 
-	'flash' => [
-		'error'		=> 'Error:',
-		'success'	=> 'Success:',
-		'warning'	=> 'Warning:',
-		'info'		=> 'Info:',
-	]
+    'contact' => [
+        'title'			=> 'Contact',
+        'description'	=> 'Contact description',
+    ],
+
+    'flash' => [
+        'error'		=> 'Error:',
+        'success'	=> 'Success:',
+        'warning'	=> 'Warning:',
+        'info'		=> 'Info:',
+    ]
 
 ];

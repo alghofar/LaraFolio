@@ -3,7 +3,6 @@
 /vendor
 
 # OS
-.DS_Store
 .idea/
 
 # Packages

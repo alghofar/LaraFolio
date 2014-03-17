@@ -22,17 +22,17 @@ class RepositoryServiceProvider extends ServiceProvider
 		 */
 		$this->app->bind('Tyloo\Repositories\UserRepositoryInterface', 'Tyloo\Repositories\Eloquent\UserRepository');
 
-		/**
-		 * User Mailer Services
-		 */
-		Event::subscribe('Tyloo\Services\Mailers\UserMailer');
+        /**
+         * User Mailer Services
+         */
+        Event::subscribe('Tyloo\Services\Mailers\UserMailer');
 
-		/**
-		 * Throw error when trying to fetch an unexisting user
-		 */
-		App::error(function(AdminUsersUserNotFoundException $e) {
-			return Redirect::route('admin.users.index')->withError($e->getMessage());
-		});
-	}
+        /**
+         * Throw error when trying to fetch an unexisting user
+         */
+        App::error(function (AdminUsersUserNotFoundException $e) {
+            return Redirect::route('admin.users.index')->withError($e->getMessage());
+        });
+    }
 
 }
