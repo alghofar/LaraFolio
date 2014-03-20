@@ -1,4 +1,9 @@
-<?php
+<?php namespace Tyloo\Tests;
+
+use Input;
+use Mail;
+use Mockery;
+use URL;
 
 class AuthControllerTest extends TestCase
 {

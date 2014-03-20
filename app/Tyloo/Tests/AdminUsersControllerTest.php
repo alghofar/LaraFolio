@@ -1,4 +1,6 @@
-<?php
+<?php namespace Tyloo\Tests;
+
+use URL;
 
 class AdminUsersControllerTest extends TestCase
 {

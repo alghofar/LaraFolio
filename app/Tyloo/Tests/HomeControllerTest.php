@@ -1,4 +1,4 @@
-<?php
+<?php namespace Tyloo\Tests;
 
 class HomeControllerTest extends TestCase
 {

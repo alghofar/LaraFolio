@@ -1,4 +1,7 @@
-<?php
+<?php namespace Tyloo\Tests;
+
+use Input;
+use URL;
 
 class UserControllerTest extends TestCase
 {

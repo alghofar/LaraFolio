@@ -1,6 +1,13 @@
-<?php
+<?php namespace Tyloo\Tests;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+use Illuminate\Foundation\Testing\TestCase as T;
+use Artisan;
+use Auth;
+use Mockery;
+use Route;
+use Session;
+
+class TestCase extends T
 {
     /**
      * @var bool
@@ -46,7 +53,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         $testEnvironment = 'testing';
 
-        return require __DIR__.'/../../bootstrap/start.php';
+        return require __DIR__.'/../../../bootstrap/start.php';
     }
 
     /**
