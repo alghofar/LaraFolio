@@ -1,0 +1,41 @@
+<?php
+ 
+include_once 'lib/facebook.php';
+include_once 'config.php';
+ 
+$facebook = new Facebook(array(
+    'appId'  => FACEBOOK_APP_ID,
+    'secret' => FACEBOOK_SECRET_KEY,
+    'cookie' => true,
+    'domain' => 'phpfour.com'
+));
+ 
+$session = $facebook->getSession();
+ 
+if (!$session) {
+     
+    $url = $facebook->getLoginUrl(array(
+        'canvas' => 1,
+        'fbconnect' => 0
+    ));
+ 
+    echo "<script" . " type='text/javascript'" . ">top.location.href = '$url';</script>";
+ 
+} else {
+ 
+    try {
+ 
+        $uid = $facebook->getUser();
+        $me = $facebook->api('/me');
+ 
+        $updated = date("l, F j, Y", strtotime($me['updated_time']));
+ 
+        echo "Hello " . $me['name'] . "<br />";
+        echo "You last updated your profile on " . $updated;
+ 
+    } catch (FacebookApiException $e) {
+ 
+        echo "Error:" . print_r($e, true);
+ 
+    }
+}
